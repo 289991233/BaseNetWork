@@ -9,7 +9,7 @@
        }
    }
  在App build.gradle中引用
-   compile 'com.github.289991233:BaseNetWork:v0.0.5'
+   compile 'com.github.289991233:BaseNetWork:v0.0.6'
 
 ```
 
