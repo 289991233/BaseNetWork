@@ -1,4 +1,4 @@
-package basenetword.jack.com.network;
+package basenetword.jack.com.network.http;
 
 import android.content.Context;
 import android.os.Handler;
@@ -21,7 +21,6 @@ import okhttp3.Response;
 
 
 public class OkHttp {
-
     /**
      * 静态实例
      */
