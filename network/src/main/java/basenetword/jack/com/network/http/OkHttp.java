@@ -3,14 +3,11 @@ package basenetword.jack.com.network.http;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.widget.SwipeRefreshLayout;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import basenetword.jack.com.network.utils.Loger;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -36,12 +33,14 @@ public class OkHttp {
      */
     private Handler mHandler;
     private Context mContext;
+    public static   String mBaseUrl = "https://hssc.m.huisou.com/";
 
     /**
      * 必须在全局Application先调用，获取context上下文，
      */
     public static void init(Context app) {
         getInstance().inits(app);
+
     }
 
     private void inits(Context app) {
@@ -89,8 +88,8 @@ public class OkHttp {
 
 
     //-------------------------项目中 Get请求--------------------------
-    public static void GetRequset(IHttpRequest callBack, String url, Class<?> mClass, final SwipeRefreshLayout swipe, int type) {
-        getInstance().initGet(callBack, url, mClass, swipe, type);
+    public static void GetRequset(String url, int type, IHttpRequest callBack) {
+        getInstance().initGet(callBack, url, type);
     }
 
     /**
@@ -98,19 +97,15 @@ public class OkHttp {
      *
      * @param callBack
      * @param url
-     * @param mClass
-     * @param swipe
      * @param type     如果大于10086则使用
      */
-    private void initGet(final IHttpRequest callBack, String url, final Class<?> mClass, final SwipeRefreshLayout swipe, final int type) {
-        //
-        String Url = (type >= 10086) ? url : url;
+    private void initGet(final IHttpRequest callBack, String url, final int type) {
+        String Url = (type >= 10086) ? url : mBaseUrl + url;
         final Request request = new Request.Builder().url(Url).build();
-        long startTime = System.currentTimeMillis();
+        final long startTime = System.currentTimeMillis();
         mClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-//                Loger.e(e);
                 deliverDataFailure(request, e, callBack);
             }
 
@@ -122,17 +117,15 @@ public class OkHttp {
                 } catch (IOException e) {
                     deliverDataFailure(request, e, callBack);
                 }
-//                if (mClass != null)
-//                    mClass = JSON.parseObject(result, mClass);
-//                Loger.e("   \n");
-//                Loger.e("---------------------Request Log Start---------------------");
-//                Loger.e("| " + request.toString());
-//                Loger.e("| Response:" + result);
-//                long endTime = System.currentTimeMillis();
-//                long duration = endTime - startTime;
-//                Loger.e("---------------------Request Log End:" + duration + "毫秒---------------------");
-//                Loger.e("   \n");
-                deliverDataSuccess(callBack, result, mClass, type);
+                Loger.e("   \n");
+                Loger.e("---------------------Request Log Start---------------------");
+                Loger.e("| " + request.toString());
+                Loger.e("| Response:" + result);
+                long endTime = System.currentTimeMillis();
+                long duration = endTime - startTime;
+                Loger.e("---------------------Request Log End:" + duration + "毫秒---------------------");
+                Loger.e("   \n");
+                deliverDataSuccess(callBack, result, type);
             }
         });
     }
@@ -164,7 +157,7 @@ public class OkHttp {
      * @param result
      * @param callBack
      */
-    private void deliverDataSuccess(final IHttpRequest callBack, final String result, final Class<?> mClass, final int type) {
+    private void deliverDataSuccess(final IHttpRequest callBack, final String result, final int type) {
         /**
          * 在这里使用异步线程处理
          */
@@ -173,14 +166,7 @@ public class OkHttp {
             public void run() {
                 if (callBack != null) {
                     try {
-                        JSONObject jsonObject = new JSONObject(result);
-                        if (jsonObject.optString("code").equals("40004")) {
-//                        RongIM.getInstance().logout();
-//                        UserUntil.OutLogin(mContext);
-//                        EventBus.getDefault().post(new RefreshFriendCicleEvent("gotohome"));
-                        } else {
-                            callBack.responseSucceed(type, result, mClass);
-                        }
+                        callBack.responseSucceed(type, result);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -193,20 +179,20 @@ public class OkHttp {
 //     * 数据回调接口
 //     */
     public interface IHttpRequest {
-        void responseSucceed(int type, String s, Object mClass) throws Exception;
+        void responseSucceed(int type, String s) throws Exception;
 
         void requestFailure(Request request, IOException e);
     }
 
     //-------------------------项目中 Post请求--------------------------
 
-    public static void PostRequset(IHttpRequest callBack, String url, FormBody.Builder builder, Class<?> mClass, final SwipeRefreshLayout swipe, int type) {
-        getInstance().initPost(callBack, url, builder, mClass, swipe, type);
+    public static void PostRequset(String url, FormBody.Builder builder, int type, IHttpRequest callBack) {
+        getInstance().initPost(callBack, url, builder, type);
     }
 
 
-    private void initPost(final IHttpRequest callBack, final String url, FormBody.Builder builder, final Class<?> mClass, final SwipeRefreshLayout swipe, final int type) {
-        String Url = (type >= 10086) ? url : url;
+    private void initPost(final IHttpRequest callBack, final String url, FormBody.Builder builder, final int type) {
+        String Url = (type >= 10086) ? url : mBaseUrl + url;
 
         /**
          * 如果是3.0之前版本的
@@ -222,41 +208,32 @@ public class OkHttp {
         //结果返回
         // 请求对象
         final Request request = new Request.Builder().url(Url).post(requestBody).build();
-        long startTime = System.currentTimeMillis();
+        final long startTime = System.currentTimeMillis();
         mClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-//                Loger.e(e);
                 deliverDataFailure(request, e, callBack);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String result = response.body().string();
-                try {
-                    JSONObject jsonObject = new JSONObject(result);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-//                if (mClass != null)
-//                    mClass = JSON.parseObject(result, mClass);
-//                Loger.e("   \n");
-//                Loger.e("---------------------Request Log Start---------------------");
-//                Loger.e("| " + request.toString());
+                Loger.e("   \n");
+                Loger.e("---------------------Request Log Start---------------------");
+                Loger.e("| " + request.toString());
                 StringBuilder sb = new StringBuilder();
                 FormBody body = (FormBody) request.body();
                 for (int i = 0; i < body.size(); i++) {
                     sb.append(body.encodedName(i) + "=" + body.encodedValue(i) + ",");
                 }
                 sb.delete(sb.length() - 1, sb.length());
-//                Loger.e("| RequestParams:{" + sb.toString() + "}");
-//                Loger.e("| Response:" + result);
-//                long endTime = System.currentTimeMillis();
-//                long duration = endTime - startTime;
-//                Loger.e("---------------------Request Log End:" + duration + "毫秒---------------------");
-//                Loger.e("   \n");
-                deliverDataSuccess(callBack, result, mClass, type);
+                Loger.e("| RequestParams:{" + sb.toString() + "}");
+                Loger.e("| Response:" + result);
+                long endTime = System.currentTimeMillis();
+                long duration = endTime - startTime;
+                Loger.e("---------------------Request Log End:" + duration + "毫秒---------------------");
+                Loger.e("   \n");
+                deliverDataSuccess(callBack, result, type);
             }
         });
     }

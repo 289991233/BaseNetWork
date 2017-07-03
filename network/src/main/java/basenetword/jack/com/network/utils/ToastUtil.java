@@ -1,6 +1,5 @@
 package basenetword.jack.com.network.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -18,11 +17,11 @@ public class ToastUtil {
     private Toast result;
     private static ToastUtil toastUtil;
 
-    public static ToastUtil getInstance(Activity context) {
+    public static ToastUtil getInstance() {
         if (toastUtil == null) {
             synchronized (ToastUtil.class) {
                 if (toastUtil == null)
-                    toastUtil = new ToastUtil(context);
+                    toastUtil = new ToastUtil(Utils.getContext());
             }
         }
         return toastUtil;

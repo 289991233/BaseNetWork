@@ -14,16 +14,16 @@ import basenetword.jack.com.network.R;
  * 修订历史：
  * 修 改 人：
  */
-public class BaseDialog {
+public class LoagDialog {
 
-    private static BaseDialog mBaseDialog;
+    private static LoagDialog mBaseDialog;
     private Dialog dialog;
 
-    public static BaseDialog getInstance(Activity activity) {
+    public static LoagDialog getInstance(Activity activity) {
         if (mBaseDialog == null) {
-            synchronized (BaseDialog.class) {
+            synchronized (LoagDialog.class) {
                 if (mBaseDialog == null) {
-                    mBaseDialog = new BaseDialog(activity);
+                    mBaseDialog = new LoagDialog(activity);
                 }
             }
         }
@@ -31,7 +31,7 @@ public class BaseDialog {
     }
 
 
-    public BaseDialog(Context context) {
+    public LoagDialog(Context context) {
 
         dialog = new Dialog(context, R.style.dialog_load);
         dialog.setContentView(R.layout.dialog_load);
