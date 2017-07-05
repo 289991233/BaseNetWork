@@ -129,7 +129,10 @@
             android:layout_weight="1"
         />
     </LinearLayout>
-
+    <basenetword.jack.com.network.utils.ninegridviewutils.NineGridView
+        android:id="@+id/iv_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="5dp"

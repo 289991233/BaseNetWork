@@ -1,4 +1,4 @@
-package com.jack.basenetword;
+package com.jack.basenetword.base;
 
 import android.app.Activity;
 import android.databinding.DataBindingUtil;

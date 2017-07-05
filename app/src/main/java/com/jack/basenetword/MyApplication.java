@@ -2,7 +2,13 @@ package com.jack.basenetword;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.text.TextUtils;
+import android.widget.ImageView;
+
+import com.jack.basenetword.activity.MainActivity;
+import com.sunfusheng.glideimageview.progress.GlideApp;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,6 +20,7 @@ import basenetword.jack.com.network.http.OkHttp;
 import basenetword.jack.com.network.utils.CrashHandler;
 import basenetword.jack.com.network.utils.Loger;
 import basenetword.jack.com.network.utils.Utils;
+import basenetword.jack.com.network.utils.ninegridviewutils.NineGridView;
 
 
 public class MyApplication extends Application {
@@ -37,9 +44,28 @@ public class MyApplication extends Application {
         } else {
             //其他进程 如推送等...
         }
+        NineGridView.setImageLoader(new PicassoImageLoader());
     }
 
 
+
+    /** Picasso 加载 */
+    private class PicassoImageLoader implements NineGridView.ImageLoader {
+
+        @Override
+        public void onDisplayImage(Context context, ImageView imageView, String url) {
+            GlideApp.with(context)
+                    .load(url)
+                    .placeholder(basenetword.jack.com.network.R.mipmap.ic_acquiescent)
+                    .error(basenetword.jack.com.network.R.mipmap.ic_acquiescent)
+                    .into(imageView);
+        }
+
+        @Override
+        public Bitmap getCacheImage(String url) {
+            return null;
+        }
+    }
     /**
      * 获取进程名字
      *

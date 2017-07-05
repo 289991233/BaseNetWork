@@ -5,7 +5,9 @@
                  android:label="@string/app_name"
                  android:supportsRtl="true"
     >
-
+        <activity
+            android:name=".utils.ninegridviewutils.preview.ImagePreviewActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
     </application>
 
 </manifest>

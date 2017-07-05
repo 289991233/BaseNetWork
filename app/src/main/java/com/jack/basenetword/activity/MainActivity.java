@@ -1,17 +1,27 @@
-package com.jack.basenetword;
+package com.jack.basenetword.activity;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.TypedValue;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
+import com.jack.basenetword.base.BaseActivity;
+import com.jack.basenetword.R;
 import com.jack.basenetword.databinding.ActivityMainBinding;
+import com.jack.basenetword.entity.InformationclassEntity;
+import com.jack.basenetword.fragment.TestFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +69,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                         mBinding.vp.setAdapter(new MyAdapter(getSupportFragmentManager(), mFragments, mStrings));
                         mBinding.tab.setupWithViewPager(mBinding.vp);
                         mBinding.vp.setOffscreenPageLimit(mFragments.size());
+                        setIndicator(mBinding.tab,22,22);
                     } else {
 
                     }
@@ -83,6 +94,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Loger.e("退出");
+    }
 
     class MyAdapter extends FragmentPagerAdapter {
         private List<String> mStrings;
@@ -107,6 +123,55 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         @Override
         public CharSequence getPageTitle(int position) {
             return mStrings.get(position);
+        }
+    }
+
+
+    //    public void setIndicator(Activity activity, TabLayout tabs, int leftDip, int rightDip) {
+//        Class<?> tabLayout = tabs.getClass();
+//        Field tabStrip = null;
+//        try {
+//            tabStrip = tabLayout.getDeclaredField("mTabStrip");
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        }
+//        tabStrip.setAccessible(true);
+//        LinearLayout ll_tab = null;
+//        try {
+//            ll_tab = (LinearLayout) tabStrip.get(tabs);
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+//        int left =(getDisplayMetrics(activity).density * leftDip);
+//    }
+    public void setIndicator(TabLayout tabs, int leftDip, int rightDip) {
+        Class<?> tabLayout = tabs.getClass();
+        Field tabStrip = null;
+        try {
+            tabStrip = tabLayout.getDeclaredField("mTabStrip");
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
+        tabStrip.setAccessible(true);
+        LinearLayout llTab = null;
+        try {
+            llTab = (LinearLayout) tabStrip.get(tabs);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        int left = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, leftDip, Resources.getSystem().getDisplayMetrics());
+        int right = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, rightDip, Resources.getSystem().getDisplayMetrics());
+
+        for (int i = 0; i < llTab.getChildCount(); i++) {
+            View child = llTab.getChildAt(i);
+            child.setPadding(0, 0, 0, 0);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
+            params.leftMargin = left;
+            params.rightMargin = right;
+            child.setLayoutParams(params);
+            child.invalidate();
         }
     }
 }

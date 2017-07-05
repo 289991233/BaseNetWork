@@ -1,4 +1,4 @@
-package com.jack.basenetword;
+package com.jack.basenetword.entity;
 
 import java.util.List;
 

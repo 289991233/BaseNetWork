@@ -1,7 +1,9 @@
-package com.jack.basenetword;
+package com.jack.basenetword.fragment;
 
 import android.os.Bundle;
 
+import com.jack.basenetword.base.BaseFragment;
+import com.jack.basenetword.R;
 import com.jack.basenetword.databinding.FargmentTest1Binding;
 
 import java.io.IOException;

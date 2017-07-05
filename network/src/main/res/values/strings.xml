@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Network</string>
+    <string name="select">%1$s/%2$s</string>
 </resources>

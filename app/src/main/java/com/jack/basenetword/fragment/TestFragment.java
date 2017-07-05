@@ -1,4 +1,4 @@
-package com.jack.basenetword;
+package com.jack.basenetword.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,11 +9,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.jack.basenetword.base.BaseFragment;
+import com.jack.basenetword.R;
 import com.jack.basenetword.adapter.TestAdapter;
 import com.jack.basenetword.databinding.FragmentTestBinding;
 import com.jack.basenetword.entity.NewEntity;
-import com.jcodecraeer.xrecyclerview.ProgressStyle;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +24,7 @@ import java.util.List;
 
 import basenetword.jack.com.network.http.OkHttp;
 import basenetword.jack.com.network.utils.LoagDialog;
+import basenetword.jack.com.network.utils.Loger;
 import basenetword.jack.com.network.utils.ToastUtil;
 import okhttp3.Request;
 
@@ -47,22 +48,23 @@ public class TestFragment extends BaseFragment<FragmentTestBinding> {
     @Override
     protected void lazyLoad() {
         initDatas();
-        mBinding.rv.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        mBinding.rv.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-        mBinding.rv.setLoadingListener(new XRecyclerView.LoadingListener() {
-            @Override
-            public void onRefresh() {
-                page = 1;
-                mTestAdapter.clear();
-                initDatas();
-            }
-
-            @Override
-            public void onLoadMore() {
-                page++;
-                initDatas();
-            }
-        });
+//        mBinding.rv.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+//        mBinding.rv.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+//        mBinding.rv.setLoadingListener(new XRecyclerView.LoadingListener() {
+//            @Override
+//            public void onRefresh() {
+//                page = 1;
+//                mTestAdapter.clear();
+//                initDatas();
+//            }
+//
+//            @Override
+//            public void onLoadMore() {
+//                page++;
+//                initDatas();
+//
+//            }
+//        });
     }
 
     private void initDatas() {
@@ -72,19 +74,27 @@ public class TestFragment extends BaseFragment<FragmentTestBinding> {
         OkHttp.GetRequset(url, 1, new OkHttp.IHttpRequest() {
             @Override
             public void responseSucceed(int type, String s) {
-                mBinding.rv.refreshComplete();
-                mBinding.rv.loadMoreComplete();
+
+
                 LoagDialog.getInstance(getActivity()).hideDialog();
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     mEntity = new Gson().fromJson(s, NewEntity.class);
                     if (jsonObject.optString("code").equals("40000")) {
                         if (page == 1) {
-                            mTestAdapter = new TestAdapter(mContext, null);
-                            mTestAdapter.setData(mEntity.getList().getNewslist());
+                            mTestAdapter = new TestAdapter(mContext, mEntity.getList().getNewslist());
+//                            mTestAdapter.setNewData(mEntity.getList().getNewslist());
                             mBinding.rv.setAdapter(mTestAdapter);
+                            mBinding.rv.refreshComplete();
                         } else {
-                            mTestAdapter.addData(mEntity.getList().getNewslist());
+
+//                            mTestAdapter.addData(mEntity.getList().getNewslist());
+//                            if (mEntity.getList().getNewslist().size() == 0) {
+//                                mBinding.rv.loadMoreComplete();
+////            View view = View.inflate(mContext, R.layout.activity_main, null);
+////                                mTestAdapter.addFooterView(view);
+//                            }
+//                            mBinding.rv.loadMoreComplete();
                         }
 
 
@@ -139,6 +149,12 @@ public class TestFragment extends BaseFragment<FragmentTestBinding> {
             flags = getArguments().get("flags").toString();
             type = getArguments().getString("type").toString();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Loger.e("Fragment退出");
     }
 
     class MyAdapter extends FragmentPagerAdapter {
