@@ -47,4 +47,5 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
+    compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.0'
 }

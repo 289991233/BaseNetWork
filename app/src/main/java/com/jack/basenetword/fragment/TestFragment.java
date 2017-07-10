@@ -1,5 +1,6 @@
 package com.jack.basenetword.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.jack.basenetword.activity.SelcetImageActivity;
 import com.jack.basenetword.base.XBaseFragment;
 import com.jack.basenetword.R;
 import com.jack.basenetword.adapter.TestAdapter;
@@ -65,6 +67,13 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
 //
 //            }
 //        });
+
+        mBinding.btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, SelcetImageActivity.class));
+            }
+        });
     }
 
     private void initDatas() {
