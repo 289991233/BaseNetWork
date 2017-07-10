@@ -15,7 +15,7 @@
 ```
 ##第三方库的引用
 ```
- 图片选择库：https://github.com/LuckSiege/PictureSelector
+ 图片选择库：(https://github.com/LuckSiege/PictureSelector)
 ```
 
 
