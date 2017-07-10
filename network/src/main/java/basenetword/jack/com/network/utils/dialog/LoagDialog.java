@@ -1,4 +1,4 @@
-package basenetword.jack.com.network.utils;
+package basenetword.jack.com.network.utils.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;

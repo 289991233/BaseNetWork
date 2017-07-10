@@ -16,12 +16,12 @@
                   android:text="加载中..."
                   android:textColor="#FFF"
                   android:textSize="13sp"/>
-        <com.wang.avi.AVLoadingIndicatorView
+        <basenetword.jack.com.network.utils.dialog.AVLoadingIndicatorView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            app:indicator="Pacman"
+            app:indicator="BallSpinFadeLoader"
             app:indicator_color="#FFFFFF"/>
     </RelativeLayout>
 </LinearLayout>

@@ -2,14 +2,14 @@ package com.jack.basenetword.fragment;
 
 import android.os.Bundle;
 
-import com.jack.basenetword.base.BaseFragment;
+import com.jack.basenetword.base.XBaseFragment;
 import com.jack.basenetword.R;
 import com.jack.basenetword.databinding.FargmentTest1Binding;
 
 import java.io.IOException;
 
 import basenetword.jack.com.network.http.OkHttp;
-import basenetword.jack.com.network.utils.LoagDialog;
+import basenetword.jack.com.network.utils.dialog.LoagDialog;
 import okhttp3.Request;
 
 /**
@@ -19,7 +19,7 @@ import okhttp3.Request;
  * 修订历史：
  * 修 改 人：
  */
-public class Test1Fragment extends BaseFragment<FargmentTest1Binding> {
+public class Test1Fragment extends XBaseFragment<FargmentTest1Binding> {
     @Override
     protected void lazyLoad() {
         LoagDialog.getInstance(getActivity()).showDialog();

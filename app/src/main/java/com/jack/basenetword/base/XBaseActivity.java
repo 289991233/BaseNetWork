@@ -14,7 +14,7 @@ import android.support.v7.app.AppCompatActivity;
  * 修订历史：
  * 修 改 人：
  */
-public abstract class BaseActivity<DB extends ViewDataBinding> extends AppCompatActivity {
+public abstract class XBaseActivity<DB extends ViewDataBinding> extends AppCompatActivity {
     protected DB mBinding = null;
     protected Activity mContext;
     @Override

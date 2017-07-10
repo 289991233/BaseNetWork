@@ -9,7 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.google.gson.Gson;
-import com.jack.basenetword.base.BaseFragment;
+import com.jack.basenetword.base.XBaseFragment;
 import com.jack.basenetword.R;
 import com.jack.basenetword.adapter.TestAdapter;
 import com.jack.basenetword.databinding.FragmentTestBinding;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import basenetword.jack.com.network.http.OkHttp;
-import basenetword.jack.com.network.utils.LoagDialog;
+import basenetword.jack.com.network.utils.dialog.LoagDialog;
 import basenetword.jack.com.network.utils.Loger;
 import basenetword.jack.com.network.utils.ToastUtil;
 import okhttp3.Request;
@@ -35,7 +35,7 @@ import okhttp3.Request;
  * 修订历史：
  * 修 改 人：
  */
-public class TestFragment extends BaseFragment<FragmentTestBinding> {
+public class TestFragment extends XBaseFragment<FragmentTestBinding> {
     private List<String> mStrings = new ArrayList<>();
     private List<Fragment> mFragments = new ArrayList<>();
     private String flags = "";

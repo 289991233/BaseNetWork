@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
-        applicationId "com.jack.basenetword"
-        minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     dataBinding {
@@ -53,5 +53,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':network')
 //    compile 'com.shuyu:GSYVideoPlayer:1.6.8'
-    compile 'com.github.CarGuo:GSYVideoPlayer:v1.6.8'
+//    compile 'com.github.CarGuo:GSYVideoPlayer:v1.6.8'
 }

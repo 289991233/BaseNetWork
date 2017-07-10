@@ -17,9 +17,9 @@ import android.view.ViewGroup;
  * 修订历史：
  * 修 改 人：
  */
-public abstract class BaseFragment<DB extends ViewDataBinding> extends Fragment {
+public abstract class XBaseFragment<DB extends ViewDataBinding> extends Fragment {
     protected DB mBinding = null;
-    protected BaseActivity mContext;
+    protected XBaseActivity mContext;
     // 控件是否初始化完成
     // 我们在控件初始化完成之后再进行数据的加载，否则对控件进行操作的时候会遇到空指针异常
     protected boolean isViewCreated;
@@ -43,7 +43,7 @@ public abstract class BaseFragment<DB extends ViewDataBinding> extends Fragment 
     @Override
     public void onAttach(Activity context) {
         super.onAttach(context);
-        this.mContext = (BaseActivity) context;
+        this.mContext = (XBaseActivity) context;
     }
 // ViewPager的第一个Fragment默认执行setUserVisibleHint(fasle)方法
     // 所以在activity创建完成后要让第一页也加载数据

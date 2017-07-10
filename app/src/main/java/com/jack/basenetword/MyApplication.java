@@ -1,14 +1,9 @@
 package com.jack.basenetword;
 
 import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.text.TextUtils;
-import android.widget.ImageView;
 
 import com.jack.basenetword.activity.MainActivity;
-import com.sunfusheng.glideimageview.progress.GlideApp;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,14 +11,14 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import basenetword.jack.com.network.BaseApplication;
 import basenetword.jack.com.network.http.OkHttp;
 import basenetword.jack.com.network.utils.CrashHandler;
 import basenetword.jack.com.network.utils.Loger;
 import basenetword.jack.com.network.utils.Utils;
-import basenetword.jack.com.network.utils.ninegridviewutils.NineGridView;
 
 
-public class MyApplication extends Application {
+public class MyApplication extends BaseApplication {
 
     private static MyApplication instance;
     private static List<Activity> activityList = new ArrayList<>();
@@ -39,33 +34,14 @@ public class MyApplication extends Application {
         if (!TextUtils.isEmpty(processName) && processName.equals(this.getPackageName())) { //main Process 当前app进程
             if (!BuildConfig.DEBUG) {
                 CrashHandler crashHandler = CrashHandler.getInstance();
-                crashHandler.init(getApplicationContext(),MainActivity.class);
+                crashHandler.init(getApplicationContext(), MainActivity.class);
             }
         } else {
             //其他进程 如推送等...
         }
-        NineGridView.setImageLoader(new PicassoImageLoader());
     }
 
 
-
-    /** Picasso 加载 */
-    private class PicassoImageLoader implements NineGridView.ImageLoader {
-
-        @Override
-        public void onDisplayImage(Context context, ImageView imageView, String url) {
-            GlideApp.with(context)
-                    .load(url)
-                    .placeholder(basenetword.jack.com.network.R.mipmap.ic_acquiescent)
-                    .error(basenetword.jack.com.network.R.mipmap.ic_acquiescent)
-                    .into(imageView);
-        }
-
-        @Override
-        public Bitmap getCacheImage(String url) {
-            return null;
-        }
-    }
     /**
      * 获取进程名字
      *

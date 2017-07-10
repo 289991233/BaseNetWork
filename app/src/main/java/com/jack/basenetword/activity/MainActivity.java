@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
-import com.jack.basenetword.base.BaseActivity;
+import com.jack.basenetword.base.XBaseActivity;
 import com.jack.basenetword.R;
 import com.jack.basenetword.databinding.ActivityMainBinding;
 import com.jack.basenetword.entity.InformationclassEntity;
@@ -26,10 +26,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import basenetword.jack.com.network.http.OkHttp;
+import basenetword.jack.com.network.utils.LSharePreference;
 import basenetword.jack.com.network.utils.Loger;
+import basenetword.jack.com.network.utils.ToastUtil;
 import okhttp3.Request;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> {
+public class MainActivity extends XBaseActivity<ActivityMainBinding> {
     private List<String> mStrings = new ArrayList<>();
     private List<Fragment> mFragments = new ArrayList<>();
     private InformationclassEntity mEntity = new InformationclassEntity();
@@ -41,6 +43,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        LSharePreference.getInstance(mContext).setString("ss", "To");
+        ToastUtil.getInstance().showToast(LSharePreference.getInstance(mContext).getString("ss").toString());
 
     }
 
@@ -69,7 +73,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                         mBinding.vp.setAdapter(new MyAdapter(getSupportFragmentManager(), mFragments, mStrings));
                         mBinding.tab.setupWithViewPager(mBinding.vp);
                         mBinding.vp.setOffscreenPageLimit(mFragments.size());
-                        setIndicator(mBinding.tab,22,22);
+//                        setIndicator(mBinding.tab,10,10);
                     } else {
 
                     }
