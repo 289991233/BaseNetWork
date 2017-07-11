@@ -1,13 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="basenetword.jack.com.network">
 
-    <application android:allowBackup="true"
-                 android:label="@string/app_name"
-                 android:supportsRtl="true"
-    >
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
         <activity
             android:name=".utils.ninegridviewutils.preview.ImagePreviewActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+        <activity android:name=".test.TestHomeActivity">
+        </activity>
+        <activity android:name=".test.activity.SelcetImageActivity"/>
+        <activity android:name=".test.activity.SimpeImaActivity">
+        </activity>
+        <activity android:name=".test.activity.SimpeImage2Activity">
+        </activity>
     </application>
 
 </manifest>

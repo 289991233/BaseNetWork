@@ -1,4 +1,4 @@
-package com.jack.basenetword.activity;
+package basenetword.jack.com.network.test.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -15,8 +15,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jack.basenetword.R;
-import com.jack.basenetword.adapter.GridImageAdapter;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.compress.Luban;
 import com.luck.picture.lib.config.PictureConfig;
@@ -29,13 +27,15 @@ import com.luck.picture.lib.tools.PictureFileUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import basenetword.jack.com.network.R;
+import basenetword.jack.com.network.test.adapter.GridImageAdapter;
 import basenetword.jack.com.network.utils.FullyGridLayoutManager;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 public class SelcetImageActivity extends AppCompatActivity implements View.OnClickListener,
         RadioGroup.OnCheckedChangeListener, CompoundButton.OnCheckedChangeListener {
-    private final static String TAG = MainActivity.class.getSimpleName();
+    private final static String TAG = SelcetImageActivity.class.getSimpleName();
     private List<LocalMedia> selectList = new ArrayList<>();
     private RecyclerView recyclerView;
     private GridImageAdapter adapter;
@@ -162,7 +162,7 @@ public class SelcetImageActivity extends AppCompatActivity implements View.OnCli
                         .theme(themeId)// 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style
                         .maxSelectNum(maxSelectNum)// 最大图片选择数量
                         .minSelectNum(1)// 最小选择数量
-                        .imageSpanCount(4)// 每行显示个数
+                        .imageSpanCount(3)// 每行显示个数
                         .selectionMode(cb_choose_mode.isChecked() ?
                                 PictureConfig.MULTIPLE : PictureConfig.SINGLE)// 多选 or 单选
                         .previewImage(cb_preview_img.isChecked())// 是否可预览图片
@@ -263,103 +263,102 @@ public class SelcetImageActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.left_back:
-                finish();
-                break;
-            case R.id.minus:
-                if (maxSelectNum > 1) {
-                    maxSelectNum--;
-                }
-                tv_select_num.setText(maxSelectNum + "");
-                adapter.setSelectMax(maxSelectNum);
-                break;
-            case R.id.plus:
-                maxSelectNum++;
-                tv_select_num.setText(maxSelectNum + "");
-                adapter.setSelectMax(maxSelectNum);
-                break;
+        int i = v.getId();
+        if (i == R.id.left_back) {
+            finish();
+
+        } else if (i == R.id.minus) {
+            if (maxSelectNum > 1) {
+                maxSelectNum--;
+            }
+            tv_select_num.setText(maxSelectNum + "");
+            adapter.setSelectMax(maxSelectNum);
+
+        } else if (i == R.id.plus) {
+            maxSelectNum++;
+            tv_select_num.setText(maxSelectNum + "");
+            adapter.setSelectMax(maxSelectNum);
+
         }
     }
 
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-        switch (checkedId) {
-            case R.id.rb_all:
-                chooseMode = PictureMimeType.ofAll();
-                cb_preview_img.setChecked(true);
-                cb_preview_video.setChecked(true);
-                cb_isGif.setChecked(false);
-                cb_preview_video.setChecked(true);
-                cb_preview_img.setChecked(true);
-                cb_preview_video.setVisibility(View.VISIBLE);
-                cb_preview_img.setVisibility(View.VISIBLE);
-                cb_compress.setVisibility(View.VISIBLE);
-                cb_crop.setVisibility(View.VISIBLE);
-                cb_isGif.setVisibility(View.VISIBLE);
-                cb_preview_audio.setVisibility(View.GONE);
-                break;
-            case R.id.rb_image:
-                chooseMode = PictureMimeType.ofImage();
-                cb_preview_img.setChecked(true);
-                cb_preview_video.setChecked(false);
-                cb_isGif.setChecked(false);
-                cb_preview_video.setChecked(false);
-                cb_preview_video.setVisibility(View.GONE);
-                cb_preview_img.setChecked(true);
-                cb_preview_audio.setVisibility(View.GONE);
-                cb_preview_img.setVisibility(View.VISIBLE);
-                cb_compress.setVisibility(View.VISIBLE);
-                cb_crop.setVisibility(View.VISIBLE);
-                cb_isGif.setVisibility(View.VISIBLE);
-                break;
-            case R.id.rb_video:
-                chooseMode = PictureMimeType.ofVideo();
-                cb_preview_img.setChecked(false);
-                cb_preview_video.setChecked(true);
-                cb_isGif.setChecked(false);
-                cb_isGif.setVisibility(View.GONE);
-                cb_preview_video.setChecked(true);
-                cb_preview_video.setVisibility(View.VISIBLE);
-                cb_preview_img.setVisibility(View.GONE);
-                cb_preview_img.setChecked(false);
-                cb_compress.setVisibility(View.GONE);
-                cb_preview_audio.setVisibility(View.GONE);
-                cb_crop.setVisibility(View.GONE);
-                break;
-            case R.id.rb_audio:
-                chooseMode = PictureMimeType.ofAudio();
-                cb_preview_audio.setVisibility(View.VISIBLE);
-                break;
-            case R.id.rb_crop_default:
-                aspect_ratio_x = 0;
-                aspect_ratio_y = 0;
-                break;
-            case R.id.rb_crop_1to1:
-                aspect_ratio_x = 1;
-                aspect_ratio_y = 1;
-                break;
-            case R.id.rb_crop_3to4:
-                aspect_ratio_x = 3;
-                aspect_ratio_y = 4;
-                break;
-            case R.id.rb_crop_3to2:
-                aspect_ratio_x = 3;
-                aspect_ratio_y = 2;
-                break;
-            case R.id.rb_crop_16to9:
-                aspect_ratio_x = 16;
-                aspect_ratio_y = 9;
-                break;
-            case R.id.rb_compress_system:
-                compressMode = PictureConfig.SYSTEM_COMPRESS_MODE;
-                break;
-            case R.id.rb_compress_luban:
-                compressMode = PictureConfig.LUBAN_COMPRESS_MODE;
-                break;
-            case R.id.rb_default_style:
-                themeId = R.style.picture_default_style;
-                break;
+        if (checkedId == R.id.rb_all) {
+            chooseMode = PictureMimeType.ofAll();
+            cb_preview_img.setChecked(true);
+            cb_preview_video.setChecked(true);
+            cb_isGif.setChecked(false);
+            cb_preview_video.setChecked(true);
+            cb_preview_img.setChecked(true);
+            cb_preview_video.setVisibility(View.VISIBLE);
+            cb_preview_img.setVisibility(View.VISIBLE);
+            cb_compress.setVisibility(View.VISIBLE);
+            cb_crop.setVisibility(View.VISIBLE);
+            cb_isGif.setVisibility(View.VISIBLE);
+            cb_preview_audio.setVisibility(View.GONE);
+
+        } else if (checkedId == R.id.rb_image) {
+            chooseMode = PictureMimeType.ofImage();
+            cb_preview_img.setChecked(true);
+            cb_preview_video.setChecked(false);
+            cb_isGif.setChecked(false);
+            cb_preview_video.setChecked(false);
+            cb_preview_video.setVisibility(View.GONE);
+            cb_preview_img.setChecked(true);
+            cb_preview_audio.setVisibility(View.GONE);
+            cb_preview_img.setVisibility(View.VISIBLE);
+            cb_compress.setVisibility(View.VISIBLE);
+            cb_crop.setVisibility(View.VISIBLE);
+            cb_isGif.setVisibility(View.VISIBLE);
+
+        } else if (checkedId == R.id.rb_video) {
+            chooseMode = PictureMimeType.ofVideo();
+            cb_preview_img.setChecked(false);
+            cb_preview_video.setChecked(true);
+            cb_isGif.setChecked(false);
+            cb_isGif.setVisibility(View.GONE);
+            cb_preview_video.setChecked(true);
+            cb_preview_video.setVisibility(View.VISIBLE);
+            cb_preview_img.setVisibility(View.GONE);
+            cb_preview_img.setChecked(false);
+            cb_compress.setVisibility(View.GONE);
+            cb_preview_audio.setVisibility(View.GONE);
+            cb_crop.setVisibility(View.GONE);
+
+        } else if (checkedId == R.id.rb_audio) {
+            chooseMode = PictureMimeType.ofAudio();
+            cb_preview_audio.setVisibility(View.VISIBLE);
+
+        } else if (checkedId == R.id.rb_crop_default) {
+            aspect_ratio_x = 0;
+            aspect_ratio_y = 0;
+
+        } else if (checkedId == R.id.rb_crop_1to1) {
+            aspect_ratio_x = 1;
+            aspect_ratio_y = 1;
+
+        } else if (checkedId == R.id.rb_crop_3to4) {
+            aspect_ratio_x = 3;
+            aspect_ratio_y = 4;
+
+        } else if (checkedId == R.id.rb_crop_3to2) {
+            aspect_ratio_x = 3;
+            aspect_ratio_y = 2;
+
+        } else if (checkedId == R.id.rb_crop_16to9) {
+            aspect_ratio_x = 16;
+            aspect_ratio_y = 9;
+
+        } else if (checkedId == R.id.rb_compress_system) {
+            compressMode = PictureConfig.SYSTEM_COMPRESS_MODE;
+
+        } else if (checkedId == R.id.rb_compress_luban) {
+            compressMode = PictureConfig.LUBAN_COMPRESS_MODE;
+
+        } else if (checkedId == R.id.rb_default_style) {
+            themeId = R.style.picture_default_style;
+
 //            case R.id.rb_white_style:
 //                themeId = R.style.picture_white_style;
 //                break;
@@ -376,37 +375,37 @@ public class SelcetImageActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()) {
-            case R.id.cb_crop:
-                rgb_crop.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-                cb_hide.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-                cb_crop_circular.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-                cb_styleCrop.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-                cb_showCropFrame.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-                cb_showCropGrid.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-                break;
-            case R.id.cb_crop_circular:
-                if (isChecked) {
-                    x = aspect_ratio_x;
-                    y = aspect_ratio_y;
-                    aspect_ratio_x = 1;
-                    aspect_ratio_y = 1;
-                } else {
-                    aspect_ratio_x = x;
-                    aspect_ratio_y = y;
-                }
-                rgb_crop.setVisibility(isChecked ? View.GONE : View.VISIBLE);
-                if (isChecked) {
-                    cb_showCropFrame.setChecked(false);
-                    cb_showCropGrid.setChecked(false);
-                } else {
-                    cb_showCropFrame.setChecked(true);
-                    cb_showCropGrid.setChecked(true);
-                }
-                break;
-            case R.id.cb_compress:
-                rgb_compress.setVisibility(isChecked ? View.VISIBLE : View.GONE);
-                break;
+        int i = buttonView.getId();
+        if (i == R.id.cb_crop) {
+            rgb_crop.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            cb_hide.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            cb_crop_circular.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            cb_styleCrop.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            cb_showCropFrame.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+            cb_showCropGrid.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+
+        } else if (i == R.id.cb_crop_circular) {
+            if (isChecked) {
+                x = aspect_ratio_x;
+                y = aspect_ratio_y;
+                aspect_ratio_x = 1;
+                aspect_ratio_y = 1;
+            } else {
+                aspect_ratio_x = x;
+                aspect_ratio_y = y;
+            }
+            rgb_crop.setVisibility(isChecked ? View.GONE : View.VISIBLE);
+            if (isChecked) {
+                cb_showCropFrame.setChecked(false);
+                cb_showCropGrid.setChecked(false);
+            } else {
+                cb_showCropFrame.setChecked(true);
+                cb_showCropGrid.setChecked(true);
+            }
+
+        } else if (i == R.id.cb_compress) {
+            rgb_compress.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+
         }
     }
 }

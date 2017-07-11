@@ -10,10 +10,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.google.gson.Gson;
-import com.jack.basenetword.activity.SelcetImageActivity;
-import com.jack.basenetword.base.XBaseFragment;
 import com.jack.basenetword.R;
 import com.jack.basenetword.adapter.TestAdapter;
+import com.jack.basenetword.base.XBaseFragment;
 import com.jack.basenetword.databinding.FragmentTestBinding;
 import com.jack.basenetword.entity.NewEntity;
 
@@ -25,9 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import basenetword.jack.com.network.http.OkHttp;
-import basenetword.jack.com.network.utils.dialog.LoagDialog;
+import basenetword.jack.com.network.test.TestHomeActivity;
 import basenetword.jack.com.network.utils.Loger;
 import basenetword.jack.com.network.utils.ToastUtil;
+import basenetword.jack.com.network.utils.dialog.LoagDialog;
 import okhttp3.Request;
 
 /**
@@ -71,7 +71,7 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
         mBinding.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(mContext, SelcetImageActivity.class));
+                startActivity(new Intent(mContext, TestHomeActivity.class));
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.jack.basenetword.adapter;
+package basenetword.jack.com.network.test.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.jack.basenetword.R;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
@@ -26,6 +25,8 @@ import com.luck.picture.lib.tools.StringUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import basenetword.jack.com.network.R;
 
 /**
  * author：luck
