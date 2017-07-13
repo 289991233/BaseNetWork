@@ -5,7 +5,7 @@ package basenetword.jack.com.network.http;
 
 import android.util.Log;
 
-public class XBasePresenter<T extends XContract.View, E extends XContract.Model> {
+public class TBasePresenter<T extends TContract.View, E extends TContract.Model> {
     protected T view;
     protected E model;
 
@@ -13,7 +13,7 @@ public class XBasePresenter<T extends XContract.View, E extends XContract.Model>
         this.view = (T) view;
         this.model = (E) model;
     }
-//    public XBasePresenter(T view, E model) {
+//    public TBasePresenter(T view, E model) {
 //        this.view = view;
 //        this.model = model;
 //    }
@@ -26,6 +26,7 @@ public class XBasePresenter<T extends XContract.View, E extends XContract.Model>
         Log.e("xx", view + "----" + model + "----销毁了");
         view = null;
         model = null;
+
     }
 
 

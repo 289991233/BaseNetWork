@@ -24,7 +24,7 @@ public class ImageLoad {
      * @param url
      * @param iv
      */
-    public static void glideLoader(Context context, ImageView iv, String url) {
+    public static void load(Context context, ImageView iv, String url) {
         if (iv == null) {
             throw new IllegalArgumentException("argument error");
         }
@@ -35,7 +35,7 @@ public class ImageLoad {
                 .into(iv);
     }
 
-    public static void glideLoader(Context context, ImageView iv, String url, int w, int h) {
+    public static void load(Context context, ImageView iv, String url, int w, int h) {
         if (iv == null) {
             throw new IllegalArgumentException("argument error");
         }

@@ -1,7 +1,7 @@
 
 package basenetword.jack.com.network.http;
 
-public interface XContract {
+public interface TContract {
     interface Presenter {
 
     }

@@ -20,8 +20,9 @@ import okhttp3.Request;
  * 修 改 人：
  */
 public class Test1Fragment extends XBaseFragment<FargmentTest1Binding> {
+
     @Override
-    protected void lazyLoad() {
+    protected void initData() {
         LoagDialog.getInstance(getActivity()).showDialog();
         OkHttp.GetRequset("apps/start/index", 1, new OkHttp.IHttpRequest() {
             @Override

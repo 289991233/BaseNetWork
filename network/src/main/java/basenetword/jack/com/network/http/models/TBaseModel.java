@@ -1,6 +1,7 @@
 package basenetword.jack.com.network.http.models;
 
 
+import basenetword.jack.com.network.utils.Loger;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -11,7 +12,7 @@ import io.reactivex.disposables.Disposable;
  * 修订历史：
  * 修 改 人：
  */
-public abstract class XBaseModel  implements BaseModel{
+public abstract class TBaseModel implements BaseModel {
     //保存观察者和订阅者的订阅关系对象
     public CompositeDisposable compositeDisposable;
 
@@ -29,6 +30,7 @@ public abstract class XBaseModel  implements BaseModel{
 
     @Override
     public void dispose() {
+        Loger.e("XBaseModel销毁了");
         //解除compositeDisposable中所有保存的Disposable对象中的订阅关系
         if (compositeDisposable != null) {
             compositeDisposable.dispose();

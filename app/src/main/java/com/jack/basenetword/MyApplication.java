@@ -26,10 +26,11 @@ public class MyApplication extends MultiDexApplication {
 
     public void onCreate() {
         super.onCreate();
+        Utils.init(this);
         instance = this;
         Loger.setDebug(true);
         OkHttp.init(this);
-        Utils.init(this);
+
         String processName = getProcessName();  //注意区分进程初始化不同的东西【避免其他无关进程不必要的初始化】
         if (!TextUtils.isEmpty(processName) && processName.equals(this.getPackageName())) { //main Process 当前app进程
             if (!BuildConfig.DEBUG) {

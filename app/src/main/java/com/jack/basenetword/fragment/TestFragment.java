@@ -17,6 +17,7 @@ import com.jack.basenetword.adapter.TestAdapter;
 import com.jack.basenetword.base.XBaseFragment;
 import com.jack.basenetword.databinding.FragmentTestBinding;
 import com.jack.basenetword.entity.NewEntity;
+import com.sunfusheng.glideimageview.progress.GlideApp;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,7 +52,7 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
     boolean loading;
 
     @Override
-    protected void lazyLoad() {
+    protected void initData() {
         initDatas();
 //        mBinding.rv.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
 //        mBinding.rv.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
@@ -95,6 +96,25 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
                     page++;
                     initDatas();
                 }
+                //0 表示停止滑动的状态 SCROLL_STATE_IDLE
+//1表示正在滚动，用户手指在屏幕上 SCROLL_STATE_TOUCH_SCROLL
+//2表示正在滑动。用户手指已经离开屏幕 SCROLL_STATE_FLING
+                switch (newState) {
+                    case 2:
+                        GlideApp.with(mContext).pauseRequests();
+                        Loger.e("暂停加载" + newState);
+                        break;
+                    case 0:
+                        GlideApp.with(mContext).resumeRequests();
+                        Loger.e("恢复加载" + newState);
+                        break;
+                    case 1:
+                        GlideApp.with(mContext).resumeRequests();
+                        Loger.e("恢复加载" + newState);
+                        break;
+                }
+
+
             }
 
             @Override
@@ -105,16 +125,18 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
             }
         });
 
+
+
     }
 
     private void initDatas() {
 
         LoagDialog.getInstance(getActivity()).showDialog();
-        String url = "apps/news/index?type=" + type + "&flags=" + flags + "&page=" + page + "&categoryid=" + id + "&token=";
-        OkHttp.GetRequset(url, 1, new OkHttp.IHttpRequest() {
+        String url = "https://hssc.m.huisou.com/apps/news/index?type=" + type + "&flags=" + flags + "&page=" + page + "&categoryid=" + id + "&token=";
+        OkHttp.GetRequset(url, 10087, new OkHttp.IHttpRequest() {
             @Override
             public void responseSucceed(int type, String s) {
-mBinding.swipe.setRefreshing(false);
+                mBinding.swipe.setRefreshing(false);
 
                 LoagDialog.getInstance(getActivity()).hideDialog();
                 try {

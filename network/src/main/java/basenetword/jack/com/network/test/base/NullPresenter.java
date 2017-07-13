@@ -1,7 +1,7 @@
 package basenetword.jack.com.network.test.base;
 
 
-import basenetword.jack.com.network.http.XBasePresenter;
+import basenetword.jack.com.network.http.TBasePresenter;
 
 /**
  * 描    述：
@@ -10,5 +10,5 @@ import basenetword.jack.com.network.http.XBasePresenter;
  * 修订历史：
  * 修 改 人：
  */
-public class NullPresenter extends XBasePresenter {
+public class NullPresenter extends TBasePresenter {
 }

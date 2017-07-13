@@ -54,5 +54,6 @@ dependencies {
     compile ('com.alibaba.android:vlayout:1.0.9@aar') {
         transitive = true
     }
+    compile 'com.squareup.picasso:picasso:2.5.+'
 
 }

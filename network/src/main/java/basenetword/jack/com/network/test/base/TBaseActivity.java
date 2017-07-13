@@ -1,6 +1,7 @@
 package basenetword.jack.com.network.test.base;
 
 import android.app.Activity;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -10,7 +11,9 @@ import android.support.v7.widget.Toolbar;
 
 import basenetword.jack.com.network.http.BaseView;
 import basenetword.jack.com.network.http.GenericHelper;
-import basenetword.jack.com.network.http.XBasePresenter;
+import basenetword.jack.com.network.http.TBasePresenter;
+import basenetword.jack.com.network.utils.ToastUtil;
+import basenetword.jack.com.network.utils.dialog.LoagDialog;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -21,18 +24,22 @@ import io.reactivex.disposables.Disposable;
  * 修订历史：
  * 修 改 人：
  */
-public abstract class TBaseActivity<DB extends ViewDataBinding, P extends XBasePresenter> extends AppCompatActivity implements BaseView {
+public abstract class TBaseActivity<DB extends ViewDataBinding, P extends TBasePresenter> extends AppCompatActivity implements BaseView {
     protected DB mBinding = null;
-    protected Activity mContext;
+    protected Activity mActivity;
+    protected Context mContext;
     protected P mPresenter = null;
     //保存观察者和订阅者的订阅关系对象
     public CompositeDisposable httpCompositeDisposable = null;
+    private LoagDialog mLoagDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, getLayoutId());
-        this.mContext = this;
+        this.mContext = getApplicationContext();
+        this.mActivity = this;
+        mLoagDialog = new LoagDialog(this);
         try {
             mPresenter = GenericHelper.newPresenter(this);
         } catch (Exception e) {
@@ -48,20 +55,21 @@ public abstract class TBaseActivity<DB extends ViewDataBinding, P extends XBaseP
 
     protected abstract int getLayoutId();
 
-    protected abstract void init(Bundle savedInstanceState);
-
     protected abstract void initView();
 
     protected abstract void initData();
 
+    protected abstract void init(Bundle savedInstanceState);
+
     @Override
     public void Toast(String msg) {
-
+        ToastUtil.getInstance().showToast(msg);
     }
 
     @Override
     public void showDialog() {
-
+//        LoagDialog.getInstance(mActivity).showDialog();
+        mLoagDialog.showDialog();
     }
 
     @Override
@@ -76,7 +84,8 @@ public abstract class TBaseActivity<DB extends ViewDataBinding, P extends XBaseP
 
     @Override
     public void hideDialog() {
-
+//        LoagDialog.getInstance(mActivity).hideDialog();
+        mLoagDialog.hideDialog();
     }
 
 

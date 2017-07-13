@@ -10,11 +10,12 @@ import basenetword.jack.com.network.test.activity.SelcetImageActivity;
 import basenetword.jack.com.network.test.activity.SimpeImaActivity;
 import basenetword.jack.com.network.test.activity.SimpeImage2Activity;
 import basenetword.jack.com.network.test.activity.VlayoutActivity;
-import basenetword.jack.com.network.test.base.NullPresenter;
 import basenetword.jack.com.network.test.base.TBaseActivity;
+import basenetword.jack.com.network.test.mvptest.TestHomeContract;
+import basenetword.jack.com.network.test.mvptest.TestHomePresenter;
 import basenetword.jack.com.network.test.nice9.MainActivity;
 
-public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding, NullPresenter> {
+public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding, TestHomePresenter> implements TestHomeContract.View {
 
 
     @Override
@@ -58,6 +59,13 @@ public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding, Nul
                 startActivity(new Intent(mContext, VlayoutActivity.class));
             }
         });
+        mBinding.btnImg5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+                mPresenter.getHome("1", 1);
+            }
+        });
     }
 
     @Override
@@ -67,7 +75,19 @@ public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding, Nul
 
     @Override
     protected void initData() {
+
     }
 
 
+    @Override
+    public void onSuccess(String s, int type) {
+        hideDialog();
+        mBinding.tv.setText(s);
+    }
+
+    @Override
+    public void onError(Throwable t, String errorTips) {
+        hideDialog();
+        mBinding.tv.setText(errorTips + "---" + t);
+    }
 }

@@ -25,5 +25,12 @@
             android:id="@+id/btn_img4"
             style="@style/MatchWrap"
             android:text="Vlayout"/>
+        <Button
+            android:id="@+id/btn_img5"
+            style="@style/MatchWrap"
+            android:text="请求接口"/>
+        <TextView
+            android:id="@+id/tv"
+            style="@style/MatchWrap"/>
     </LinearLayout>
 </layout>

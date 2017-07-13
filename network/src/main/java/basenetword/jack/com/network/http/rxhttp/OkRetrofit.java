@@ -4,6 +4,7 @@ package basenetword.jack.com.network.http.rxhttp;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import basenetword.jack.com.network.test.TApiServer;
 import basenetword.jack.com.network.utils.Utils;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -43,7 +44,7 @@ public class OkRetrofit {
     }
 
     public OkRetrofit() {
-//        initView(Constant.APP_BASE_URL);
+        initView("https://hssc.m.huisou.com/");
     }
 
     public OkRetrofit(String baseurl) {
@@ -78,14 +79,14 @@ public class OkRetrofit {
                 .build();
     }
 
-//    /**
-//     * 公共api接口
-//     *
-//     * @return
-//     */
-//    public ApiServer getApi() {
-//        return mRetrofit.create(ApiServer.class);
-//    }
+    /**
+     * 公共api接口
+     *
+     * @return
+     */
+    public TApiServer getApi() {
+        return mRetrofit.create(TApiServer.class);
+    }
 
     /**
      * 自定义API接口

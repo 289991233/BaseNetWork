@@ -35,7 +35,7 @@ public abstract class XBaseFragment<DB extends ViewDataBinding> extends Fragment
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser && isViewCreated && !isLoadCompleted) {
             // 只有在对用户可见、控件初始化完成并且未曾加载过数据的情况下才进行懒加载
-            lazyLoad();
+            initData();
             isLoadCompleted = true;
         }
     }
@@ -50,7 +50,7 @@ public abstract class XBaseFragment<DB extends ViewDataBinding> extends Fragment
 
 
     // 懒加载,强制子类重写
-    protected abstract void lazyLoad();
+    protected abstract void initData();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,7 +65,7 @@ public abstract class XBaseFragment<DB extends ViewDataBinding> extends Fragment
         super.onActivityCreated(savedInstanceState);
         if (getUserVisibleHint()) {
             // 此处不需要判断isViewCreated，因为这个方法在onCreateView方法之后执行
-            lazyLoad();
+            initData();
             isLoadCompleted = true;
         }
 

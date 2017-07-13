@@ -48,15 +48,15 @@ public class SimpeImaActivity extends TBaseActivity<ActivitySimpeImaBinding,Null
                         case 1:
                             // 预览图片 可自定长按保存路径
                             //PictureSelector.create(MainActivity.this).externalPicturePreview(position, "/custom_file", selectList);
-                            PictureSelector.create(mContext).externalPicturePreview(position, selectList);
+                            PictureSelector.create(mActivity).externalPicturePreview(position, selectList);
                             break;
                         case 2:
                             // 预览视频
-                            PictureSelector.create(mContext).externalPictureVideo(media.getPath());
+                            PictureSelector.create(mActivity).externalPictureVideo(media.getPath());
                             break;
                         case 3:
                             // 预览音频
-                            PictureSelector.create(mContext).externalPictureAudio(media.getPath());
+                            PictureSelector.create(mActivity).externalPictureAudio(media.getPath());
                             break;
                     }
                 }
@@ -95,7 +95,7 @@ public class SimpeImaActivity extends TBaseActivity<ActivitySimpeImaBinding,Null
         public void onAddPicClick() {
 
             // 进入相册 以下是例子：不需要的api可以不写
-            PictureSelector.create(mContext)
+            PictureSelector.create(mActivity)
                     .openGallery(chooseMode)// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
                     .maxSelectNum(maxSelectNum)// 最大图片选择数量
                     .minSelectNum(1)// 最小选择数量

@@ -37,4 +37,10 @@ public abstract class XBaseActivity<DB extends ViewDataBinding> extends AppCompa
     protected abstract void initView();
 
     protected abstract void initData();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    System.exit(0);
+    }
 }

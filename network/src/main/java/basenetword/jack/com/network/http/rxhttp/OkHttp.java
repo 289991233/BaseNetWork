@@ -4,11 +4,14 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import basenetword.jack.com.network.utils.Loger;
+import basenetword.jack.com.network.utils.Utils;
 import io.reactivex.disposables.Disposable;
+import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -56,12 +59,20 @@ public class OkHttp {
 //        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 //        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         mClient = new OkHttpClient();
-
+        /**
+         * 在这里直接设置连接超时.读取超时，写入超时
+         */
+        File file = new File(Utils.getContext().getApplicationContext().getCacheDir(), "rxCache");
+        //缓存大小10M
+        int cacheSize = 100 * 1024 * 1024;
+        Cache cache = new Cache(file, cacheSize);
         OkHttpClient.Builder builder = mClient.newBuilder();
         builder.connectTimeout(15, TimeUnit.SECONDS);//连接
         builder.readTimeout(15, TimeUnit.SECONDS);//读
         builder.writeTimeout(15, TimeUnit.SECONDS);//写
-//        builder.addInterceptor(loggingInterceptor);
+        builder.cache(cache)
+                .addInterceptor(new NoNetInterceptor())
+                .addNetworkInterceptor(new NetInterceptor());
         mClient = builder.build();
 
         /**

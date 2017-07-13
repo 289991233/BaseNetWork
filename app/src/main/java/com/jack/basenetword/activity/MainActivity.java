@@ -5,14 +5,14 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
-import com.jack.basenetword.base.XBaseActivity;
 import com.jack.basenetword.R;
+import com.jack.basenetword.base.XBaseActivity;
 import com.jack.basenetword.databinding.ActivityMainBinding;
 import com.jack.basenetword.entity.InformationclassEntity;
 import com.jack.basenetword.fragment.TestFragment;
@@ -26,9 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import basenetword.jack.com.network.http.rxhttp.OkHttp;
-import basenetword.jack.com.network.utils.LSharePreference;
 import basenetword.jack.com.network.utils.Loger;
-import basenetword.jack.com.network.utils.ToastUtil;
+import basenetword.jack.com.network.utils.rx.RxBus;
+import basenetword.jack.com.network.utils.rx.Subscribe;
 import okhttp3.Request;
 
 public class MainActivity extends XBaseActivity<ActivityMainBinding> {
@@ -43,14 +43,15 @@ public class MainActivity extends XBaseActivity<ActivityMainBinding> {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-        LSharePreference.getInstance(mContext).setString("ss", "To");
-        ToastUtil.getInstance().showToast(LSharePreference.getInstance(mContext).getString("ss").toString());
+//        LSharePreference.getInstance(mContext).setString("ss", "To");
+//        ToastUtil.getInstance().showToast(LSharePreference.getInstance(mContext).getString("ss").toString());
 
     }
 
     @Override
     protected void initView() {
-        OkHttp.GetRequset("apps/news/category", 1, new OkHttp.IHttpRequest() {
+        RxBus.getInstance().register(this);
+        OkHttp.GetRequset("https://hssc.m.huisou.com/apps/news/category", 10087, new OkHttp.IHttpRequest() {
             @Override
             public void responseSucceed(int type, String s) {
                 Loger.e(s);
@@ -98,13 +99,24 @@ public class MainActivity extends XBaseActivity<ActivityMainBinding> {
 
     }
 
+    @Subscribe(code = 100)
+    public void receive100(String msg) {
+        if (msg.equals("1")) {
+            mBinding.ll.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.ll.setVisibility(View.GONE);
+        }
+
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        RxBus.getInstance().unRegister(this);
         Loger.e("退出");
     }
 
-    class MyAdapter extends FragmentPagerAdapter {
+    class MyAdapter extends FragmentStatePagerAdapter {
         private List<String> mStrings;
         private List<Fragment> mFragments;
 
@@ -178,4 +190,5 @@ public class MainActivity extends XBaseActivity<ActivityMainBinding> {
             child.invalidate();
         }
     }
+
 }

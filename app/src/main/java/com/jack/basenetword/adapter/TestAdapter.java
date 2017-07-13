@@ -1,6 +1,7 @@
 package com.jack.basenetword.adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.jack.basenetword.R;
@@ -23,12 +24,13 @@ public class TestAdapter extends BaseRecyclerAdapter<NewEntity.ListBean.Newslist
 
     private Context mContext;
     List<NewEntity.ListBean.NewslistBean> list;
-//    public TestAdapter(Context context, List<NewEntity.ListBean.NewslistBean> data) {
+
+    //    public TestAdapter(Context context, List<NewEntity.ListBean.NewslistBean> data) {
 //        super(context, R.layout.rv_new_item, data);
 //        this.mContext = context;
 //    }
     public TestAdapter(Context ctx, List<NewEntity.ListBean.NewslistBean> list) {
-        super(ctx,list);
+        super(ctx, list);
         this.mContext = ctx;
         this.list = list;
     }
@@ -41,7 +43,7 @@ public class TestAdapter extends BaseRecyclerAdapter<NewEntity.ListBean.Newslist
 //        }
 //    }
 
-//    @Override
+    //    @Override
     public int getItemLayoutId(int viewType) {
         return R.layout.rv_new_item;
     }
@@ -49,8 +51,12 @@ public class TestAdapter extends BaseRecyclerAdapter<NewEntity.ListBean.Newslist
     @Override
     public void bindData(RecyclerViewHolder holder, int position, NewEntity.ListBean.NewslistBean item) {
         holder.setText(R.id.tvTitle, item.getTitle()).setText(R.id.tvTitleaSsistant, item.getShort_title());
+        ImageView imageView = (ImageView) holder.getView(R.id.ivImage);
         if (item.getImage().size() > 0) {
-            ImageLoad.glideLoader(mContext, (ImageView) holder.getView(R.id.ivImage),item.getImage().get(0).toString());
+            imageView.setVisibility(View.VISIBLE);
+            ImageLoad.load(mContext, imageView, item.getImage().get(0).toString());
+        } else {
+            imageView.setVisibility(View.GONE);
         }
 //
 //        ArrayList<ImageInfo> imageInfo = new ArrayList<>();

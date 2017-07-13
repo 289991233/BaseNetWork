@@ -33,36 +33,36 @@ public class GenericHelper {
     }
 
     public static  <T> T newPresenter(Object obj) {
-        if (!XContract.View.class.isInstance(obj)) {
-            throw new RuntimeException("no implement XContract.BaseView");
+        if (!TContract.View.class.isInstance(obj)) {
+            throw new RuntimeException("no implement TContract.BaseView");
         }
         try {
             Class<?> currentClass = obj.getClass();
 //            Class<?> viewClass = getViewInterface(currentClass);
-            Class<?> presenterClass = getGenericClass(currentClass, XContract.Presenter.class);
-            Class<?> modelClass = getGenericClass(presenterClass, XContract.Model.class);
+            Class<?> presenterClass = getGenericClass(currentClass, TContract.Presenter.class);
+            Class<?> modelClass = getGenericClass(presenterClass, TContract.Model.class);
 //            Constructor construct = presenterClass.getConstructor(viewClass, modelClass);
-            XBasePresenter<?,?> xBasePresenter = (XBasePresenter<?, ?>) presenterClass.newInstance();
+            TBasePresenter<?,?> xBasePresenter = (TBasePresenter<?, ?>) presenterClass.newInstance();
             xBasePresenter.init(obj, modelClass.newInstance());
             return (T) xBasePresenter;
         } catch (Exception e) {
             e.printStackTrace();
         }
         throw new RuntimeException("instance of presenter fail\n" +
-                " Remind presenter need to extends XBasePresenter");
+                " Remind presenter need to extends TBasePresenter");
     }
 
 
 //    public static Class<?> getViewInterface(Class currentClass) {
 //        Class<?>[] classes = currentClass.getInterfaces();
 //        for (Class<?> c : classes) {
-//            if (c != XContract.View.class) {
-//                if (getViewInterface(c) == XContract.View.class) {
+//            if (c != TContract.View.class) {
+//                if (getViewInterface(c) == TContract.View.class) {
 //                    return c;
 //                }
 //            }
 //            return c;
 //        }
-//        throw new RuntimeException("no implement XContract.BaseView");
+//        throw new RuntimeException("no implement TContract.BaseView");
 //    }
 }
