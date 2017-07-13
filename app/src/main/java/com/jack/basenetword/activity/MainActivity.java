@@ -25,7 +25,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import basenetword.jack.com.network.http.OkHttp;
+import basenetword.jack.com.network.http.rxhttp.OkHttp;
 import basenetword.jack.com.network.utils.LSharePreference;
 import basenetword.jack.com.network.utils.Loger;
 import basenetword.jack.com.network.utils.ToastUtil;

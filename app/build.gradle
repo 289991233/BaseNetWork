@@ -9,6 +9,7 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.basenetword.jack.com.network.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     dataBinding {
         enabled = true
@@ -46,7 +47,10 @@ android {
             resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.0'
         }
     }
-
+    dexOptions {
+//            incremental true
+        javaMaxHeapSize "2g"
+    }
 
 }
 dependencies {
@@ -58,7 +62,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     testCompile 'junit:junit:4.12'
     compile project(':network')
-
+    compile 'com.android.support:multidex:'
 //    compile(name: 'library-release', ext: 'aar')
 //    compile 'com.shuyu:GSYVideoPlayer:1.6.8'
 //    compile 'com.github.CarGuo:GSYVideoPlayer:v1.6.8'

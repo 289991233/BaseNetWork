@@ -5,11 +5,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/btn"/>
-        <com.jcodecraeer.xrecyclerview.XRecyclerView
-            android:id="@+id/rv"
+        <Button android:id="@+id/btn" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
         <android.support.design.widget.TabLayout
             android:id="@+id/tab"
             android:layout_width="match_parent"
@@ -17,6 +26,8 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/vp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
     </LinearLayout>
 </layout>

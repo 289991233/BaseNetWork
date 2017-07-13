@@ -17,5 +17,13 @@
             android:id="@+id/btn_img2"
             style="@style/MatchWrap"
             android:text="简单图片选择示例2"/>
+        <Button
+            android:id="@+id/btn_img3"
+            style="@style/MatchWrap"
+            android:text="NICE9"/>
+        <Button
+            android:id="@+id/btn_img4"
+            style="@style/MatchWrap"
+            android:text="Vlayout"/>
     </LinearLayout>
 </layout>

@@ -7,9 +7,10 @@ import com.luck.picture.lib.config.PictureConfig;
 
 import basenetword.jack.com.network.R;
 import basenetword.jack.com.network.databinding.ActivitySimpeImage2Binding;
+import basenetword.jack.com.network.test.base.NullPresenter;
 import basenetword.jack.com.network.test.base.TBaseActivity;
 
-public class SimpeImage2Activity extends TBaseActivity<ActivitySimpeImage2Binding> {
+public class SimpeImage2Activity extends TBaseActivity<ActivitySimpeImage2Binding,NullPresenter> {
 
     SelectImage mSelectImage;
 

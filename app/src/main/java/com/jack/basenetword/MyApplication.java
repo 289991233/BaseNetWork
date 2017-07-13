@@ -1,6 +1,7 @@
 package com.jack.basenetword;
 
 import android.app.Activity;
+import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 
 import com.jack.basenetword.activity.MainActivity;
@@ -11,14 +12,13 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import basenetword.jack.com.network.BaseApplication;
-import basenetword.jack.com.network.http.OkHttp;
+import basenetword.jack.com.network.http.rxhttp.OkHttp;
 import basenetword.jack.com.network.utils.CrashHandler;
 import basenetword.jack.com.network.utils.Loger;
 import basenetword.jack.com.network.utils.Utils;
 
 
-public class MyApplication extends BaseApplication {
+public class MyApplication extends MultiDexApplication {
 
     private static MyApplication instance;
     private static List<Activity> activityList = new ArrayList<>();

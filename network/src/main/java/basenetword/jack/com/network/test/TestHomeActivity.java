@@ -9,9 +9,12 @@ import basenetword.jack.com.network.databinding.ActivityTestHomeBinding;
 import basenetword.jack.com.network.test.activity.SelcetImageActivity;
 import basenetword.jack.com.network.test.activity.SimpeImaActivity;
 import basenetword.jack.com.network.test.activity.SimpeImage2Activity;
+import basenetword.jack.com.network.test.activity.VlayoutActivity;
+import basenetword.jack.com.network.test.base.NullPresenter;
 import basenetword.jack.com.network.test.base.TBaseActivity;
+import basenetword.jack.com.network.test.nice9.MainActivity;
 
-public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding> {
+public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding, NullPresenter> {
 
 
     @Override
@@ -43,6 +46,18 @@ public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding> {
                 startActivity(new Intent(mContext, SimpeImage2Activity.class));
             }
         });
+        mBinding.btnImg3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, MainActivity.class));
+            }
+        });
+        mBinding.btnImg4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, VlayoutActivity.class));
+            }
+        });
     }
 
     @Override
@@ -52,6 +67,7 @@ public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding> {
 
     @Override
     protected void initData() {
-
     }
+
+
 }

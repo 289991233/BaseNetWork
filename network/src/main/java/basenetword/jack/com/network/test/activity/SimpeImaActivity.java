@@ -17,11 +17,13 @@ import java.util.List;
 import basenetword.jack.com.network.R;
 import basenetword.jack.com.network.databinding.ActivitySimpeImaBinding;
 import basenetword.jack.com.network.test.adapter.GridImageAdapter;
+import basenetword.jack.com.network.test.base.NullPresenter;
 import basenetword.jack.com.network.test.base.TBaseActivity;
 import basenetword.jack.com.network.utils.FullyGridLayoutManager;
 import basenetword.jack.com.network.utils.Loger;
 
-public class SimpeImaActivity extends TBaseActivity<ActivitySimpeImaBinding> {
+
+public class SimpeImaActivity extends TBaseActivity<ActivitySimpeImaBinding,NullPresenter> {
     private List<LocalMedia> selectList = new ArrayList<>();
     private List<String> ImageType = new ArrayList<>();
     private GridImageAdapter adapter;

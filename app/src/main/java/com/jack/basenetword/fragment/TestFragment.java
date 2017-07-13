@@ -6,7 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.google.gson.Gson;
@@ -23,7 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import basenetword.jack.com.network.http.OkHttp;
+import basenetword.jack.com.network.http.rxhttp.OkHttp;
 import basenetword.jack.com.network.test.TestHomeActivity;
 import basenetword.jack.com.network.utils.Loger;
 import basenetword.jack.com.network.utils.ToastUtil;
@@ -46,6 +48,7 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
     private int page = 1;
     private TestAdapter mTestAdapter = null;
     private NewEntity mEntity = new NewEntity();
+    boolean loading;
 
     @Override
     protected void lazyLoad() {
@@ -74,6 +77,34 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
                 startActivity(new Intent(mContext, TestHomeActivity.class));
             }
         });
+        mBinding.swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mTestAdapter.clear();
+                loading = false;
+                page = 1;
+                initDatas();
+            }
+        });
+        mBinding.rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (!loading && !recyclerView.canScrollVertically(1)) {
+                    loading = true;
+                    page++;
+                    initDatas();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                Loger.e(dx + "---" + dy);
+            }
+        });
+
     }
 
     private void initDatas() {
@@ -83,7 +114,7 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
         OkHttp.GetRequset(url, 1, new OkHttp.IHttpRequest() {
             @Override
             public void responseSucceed(int type, String s) {
-
+mBinding.swipe.setRefreshing(false);
 
                 LoagDialog.getInstance(getActivity()).hideDialog();
                 try {
@@ -94,15 +125,16 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
                             mTestAdapter = new TestAdapter(mContext, mEntity.getList().getNewslist());
 //                            mTestAdapter.setNewData(mEntity.getList().getNewslist());
                             mBinding.rv.setAdapter(mTestAdapter);
-                            mBinding.rv.refreshComplete();
+//                            mBinding.rv.refreshComplete();
                         } else {
-
-//                            mTestAdapter.addData(mEntity.getList().getNewslist());
-//                            if (mEntity.getList().getNewslist().size() == 0) {
+                            loading = false;
+                            mTestAdapter.addData(mEntity.getList().getNewslist());
+                            if (mEntity.getList().getNewslist().size() == 0) {
+                                loading = true;
 //                                mBinding.rv.loadMoreComplete();
-////            View view = View.inflate(mContext, R.layout.activity_main, null);
-////                                mTestAdapter.addFooterView(view);
-//                            }
+//            View view = View.inflate(mContext, R.layout.activity_mainnice, null);
+//                                mTestAdapter.addFooterView(view);
+                            }
 //                            mBinding.rv.loadMoreComplete();
                         }
 

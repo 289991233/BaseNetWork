@@ -6,13 +6,9 @@ import android.widget.ImageView;
 import com.jack.basenetword.R;
 import com.jack.basenetword.entity.NewEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import basenetword.jack.com.network.utils.ImageLoad;
-import basenetword.jack.com.network.utils.ninegridviewutils.ImageInfo;
-import basenetword.jack.com.network.utils.ninegridviewutils.NineGridView;
-import basenetword.jack.com.network.utils.ninegridviewutils.preview.NineGridViewClickAdapter;
 import basenetword.jack.com.network.utils.recycleviewutils.BaseRecyclerAdapter;
 import basenetword.jack.com.network.utils.recycleviewutils.RecyclerViewHolder;
 
@@ -56,19 +52,19 @@ public class TestAdapter extends BaseRecyclerAdapter<NewEntity.ListBean.Newslist
         if (item.getImage().size() > 0) {
             ImageLoad.glideLoader(mContext, (ImageView) holder.getView(R.id.ivImage),item.getImage().get(0).toString());
         }
-
-        ArrayList<ImageInfo> imageInfo = new ArrayList<>();
-        List<NewEntity.ListBean.NewslistBean> imageDetails = list;
-        if (imageDetails != null) {
-            for (NewEntity.ListBean.NewslistBean imageDetail : imageDetails) {
-                ImageInfo info = new ImageInfo();
-                info.setThumbnailUrl(imageDetail.getImage().toString());
-                info.setBigImageUrl(imageDetail.getImage().toString());
-                imageInfo.add(info);
-            }
-        }
-        NineGridView nineGridView = (NineGridView) holder.getView(R.id.iv_grid);
-        nineGridView.setAdapter(new NineGridViewClickAdapter(mContext,imageInfo));
+//
+//        ArrayList<ImageInfo> imageInfo = new ArrayList<>();
+//        List<NewEntity.ListBean.NewslistBean> imageDetails = list;
+//        if (imageDetails != null) {
+//            for (NewEntity.ListBean.NewslistBean imageDetail : imageDetails) {
+//                ImageInfo info = new ImageInfo();
+//                info.setThumbnailUrl(imageDetail.getImage().toString());
+//                info.setBigImageUrl(imageDetail.getImage().toString());
+//                imageInfo.add(info);
+//            }
+//        }
+//        NineGridView nineGridView = (NineGridView) holder.getView(R.id.iv_grid);
+//        nineGridView.setAdapter(new NineGridViewClickAdapter(mContext,imageInfo));
 //        holder.getView(R.id.iv_grid).setAdapter(new ClickNineGridViewAdapter(context, imageInfo));
     }
 }

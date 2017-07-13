@@ -8,7 +8,7 @@ import com.jack.basenetword.databinding.FargmentTest1Binding;
 
 import java.io.IOException;
 
-import basenetword.jack.com.network.http.OkHttp;
+import basenetword.jack.com.network.http.rxhttp.OkHttp;
 import basenetword.jack.com.network.utils.dialog.LoagDialog;
 import okhttp3.Request;
 

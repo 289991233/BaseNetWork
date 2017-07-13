@@ -4,15 +4,16 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
-import basenetword.jack.com.network.BaseApplication;
-
 
 /**
  * Created by admin on 2015/9/6.
  * 封装sharePreference
  */
 public class LSharePreference {
-    private static String SP_NAME = BaseApplication.getInstance().getPackageName();
+    //    private static String SP_NAME = BaseApplication.getInstance().getPackageName();
+    private static String SP_NAME = "ssssss";
+
+
     private SharedPreferences sp;
     private Editor editor;
     private static LSharePreference instance;

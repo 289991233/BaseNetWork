@@ -16,6 +16,11 @@
         </activity>
         <activity android:name=".test.activity.SimpeImage2Activity">
         </activity>
+        <activity android:name=".test.nice9.DemoDragActivity"/>
+        <activity android:name=".test.nice9.DemoListActivity"/>
+        <activity android:name=".test.nice9.MainActivity"/>
+        <activity android:name=".test.activity.VlayoutActivity">
+        </activity>
     </application>
 
 </manifest>

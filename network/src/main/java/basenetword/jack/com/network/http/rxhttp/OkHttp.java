@@ -1,4 +1,4 @@
-package basenetword.jack.com.network.http;
+package basenetword.jack.com.network.http.rxhttp;
 
 import android.content.Context;
 import android.os.Handler;
@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import basenetword.jack.com.network.utils.Loger;
+import io.reactivex.disposables.Disposable;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -88,8 +89,9 @@ public class OkHttp {
 
 
     //-------------------------项目中 Get请求--------------------------
-    public static void GetRequset(String url, int type, IHttpRequest callBack) {
+    public static Disposable GetRequset(String url, int type, IHttpRequest callBack) {
         getInstance().initGet(callBack, url, type);
+        return null;
     }
 
     /**

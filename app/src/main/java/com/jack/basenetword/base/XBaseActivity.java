@@ -1,6 +1,7 @@
 package com.jack.basenetword.base;
 
 import android.app.Activity;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -16,12 +17,14 @@ import android.support.v7.app.AppCompatActivity;
  */
 public abstract class XBaseActivity<DB extends ViewDataBinding> extends AppCompatActivity {
     protected DB mBinding = null;
-    protected Activity mContext;
+    protected Activity mActivity;
+    protected Context mContext;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, getLayoutId());
-        this.mContext = this;
+        this.mContext = getApplicationContext();
+        this.mActivity = this;
         init(savedInstanceState);
         initView();
         initData();
