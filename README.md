@@ -13,9 +13,9 @@
    compile 'com.github.289991233:BaseNetWork:v0.0.8'
 
 ```
-##第三方库的引用
+## 第三方库的引用
  图片选择库：<br/>
- https://github.com/LuckSiege/PictureSelector
+ https://github.com/LuckSiege/PictureSelector <br/>
  刷新框架：<br/>
  https://github.com/scwang90/SmartRefreshLayout
 
