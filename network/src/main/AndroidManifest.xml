@@ -21,6 +21,8 @@
         <activity android:name=".test.nice9.MainActivity"/>
         <activity android:name=".test.activity.VlayoutActivity">
         </activity>
+        <activity android:name=".test.homefragment.THomeActivity">
+        </activity>
     </application>
 
 </manifest>

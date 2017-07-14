@@ -11,6 +11,7 @@ import basenetword.jack.com.network.test.activity.SimpeImaActivity;
 import basenetword.jack.com.network.test.activity.SimpeImage2Activity;
 import basenetword.jack.com.network.test.activity.VlayoutActivity;
 import basenetword.jack.com.network.test.base.TBaseActivity;
+import basenetword.jack.com.network.test.homefragment.THomeActivity;
 import basenetword.jack.com.network.test.mvptest.TestHomeContract;
 import basenetword.jack.com.network.test.mvptest.TestHomePresenter;
 import basenetword.jack.com.network.test.nice9.MainActivity;
@@ -64,6 +65,13 @@ public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding, Tes
             public void onClick(View v) {
                 showDialog();
                 mPresenter.getHome("1", 1);
+            }
+        });
+
+        mBinding.btnImg6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, THomeActivity.class));
             }
         });
     }

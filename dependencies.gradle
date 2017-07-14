@@ -1,5 +1,5 @@
 //apply from:"dependencies.gradle"  项目gradle添加这句
-project.ext {
+ext {
     android = [
             //rootProject.ext.android.compileSdkVersion
             compileSdkVersion: 23,

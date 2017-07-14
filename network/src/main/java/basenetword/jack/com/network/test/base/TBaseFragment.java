@@ -70,8 +70,7 @@ public abstract class TBaseFragment<DB extends ViewDataBinding, P extends TBaseP
     // 所以在activity创建完成后要让第一页也加载数据
 
 
-    // 懒加载,强制子类重写
-    protected abstract void initData();
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -104,7 +103,8 @@ public abstract class TBaseFragment<DB extends ViewDataBinding, P extends TBaseP
     protected abstract int getLayoutId();
 
     protected abstract void init(Bundle savedInstanceState);
-
+    // 懒加载,强制子类重写
+    protected abstract void initData();
     @Override
     public void Toast(String msg) {
         ToastUtil.getInstance().showToast(msg);

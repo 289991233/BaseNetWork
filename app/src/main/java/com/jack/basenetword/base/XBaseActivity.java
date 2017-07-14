@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import basenetword.jack.com.network.utils.statusbar.ImmersionBar;
+
 /**
  * 描    述：
  * 创 建 人：
@@ -19,12 +21,14 @@ public abstract class XBaseActivity<DB extends ViewDataBinding> extends AppCompa
     protected DB mBinding = null;
     protected Activity mActivity;
     protected Context mContext;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, getLayoutId());
         this.mContext = getApplicationContext();
         this.mActivity = this;
+        ImmersionBar.with(this).statusBarColor("#FF0000").init();
         init(savedInstanceState);
         initView();
         initData();
@@ -41,6 +45,7 @@ public abstract class XBaseActivity<DB extends ViewDataBinding> extends AppCompa
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    System.exit(0);
+        ImmersionBar.with(this).destroy();
+        System.exit(0);
     }
 }

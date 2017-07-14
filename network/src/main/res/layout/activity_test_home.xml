@@ -29,6 +29,10 @@
             android:id="@+id/btn_img5"
             style="@style/MatchWrap"
             android:text="请求接口"/>
+        <Button
+            android:id="@+id/btn_img6"
+            style="@style/MatchWrap"
+            android:text="底部栏"/>
         <TextView
             android:id="@+id/tv"
             style="@style/MatchWrap"/>
