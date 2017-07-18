@@ -23,6 +23,10 @@
         </activity>
         <activity android:name=".test.homefragment.THomeActivity">
         </activity>
+        <activity android:name=".test.activity.ImageBiscuitActivity">
+        </activity>
+        <activity android:name=".test.activity.WebActivity">
+        </activity>
     </application>
 
 </manifest>

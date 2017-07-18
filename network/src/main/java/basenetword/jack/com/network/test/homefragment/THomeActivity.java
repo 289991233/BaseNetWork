@@ -2,12 +2,10 @@ package basenetword.jack.com.network.test.homefragment;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.view.View;
 
 import basenetword.jack.com.network.R;
 import basenetword.jack.com.network.databinding.ActivityThomeBinding;
 import basenetword.jack.com.network.test.base.TBaseActivity;
-import basenetword.jack.com.network.utils.baserecycleviewadapter.BaseQuickAdapter;
 
 /**
  * 描    述：程序主框架界面
@@ -17,9 +15,9 @@ import basenetword.jack.com.network.utils.baserecycleviewadapter.BaseQuickAdapte
  * 修 改 人：
  */
 public class THomeActivity extends TBaseActivity<ActivityThomeBinding, THomeBottomPresenter> implements THomeBottomContract.View {
-    private TWelcomeEntity mWelcomeEntity = new TWelcomeEntity();
-    private TFragmentController mController;
-    private THomeBottomAdapter mAdapter;
+    private TWelcomeEntity mWelcomeEntity = null;
+    private TFragmentController mController = null;
+    private THomeBottomAdapter mAdapter = null;
 
     @Override
     protected int getLayoutId() {
@@ -28,11 +26,13 @@ public class THomeActivity extends TBaseActivity<ActivityThomeBinding, THomeBott
 
     @Override
     protected void initView() {
-
+        //初始化UI控件 数据
+        mWelcomeEntity = new TWelcomeEntity();
     }
 
     @Override
     protected void initData() {
+        //请求strat接口数据
         showDialog();
         mPresenter.getStart();
     }
@@ -47,20 +47,7 @@ public class THomeActivity extends TBaseActivity<ActivityThomeBinding, THomeBott
      * 放在初始化后面
      */
     private void initClick() {
-        mAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                //1，全部设为未选择
-                for (int i = 0; i < mWelcomeEntity.getList().getFooter_list().size(); i++) {
-                    mWelcomeEntity.getList().getFooter_list().get(i).setIcon_true(1);
-                }
-                //2，设置选中状态
-                mWelcomeEntity.getList().getFooter_list().get(position).setIcon_true(0);
-                mController.showFragment(position);//3,显示对应的界面
-                mAdapter.notifyDataSetChanged();//4,刷新底部
-            }
-        });
-
+        mPresenter.initClick(mWelcomeEntity, mAdapter, mController);
     }
 
     private void initInfo() {

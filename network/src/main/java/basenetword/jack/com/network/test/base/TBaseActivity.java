@@ -30,7 +30,7 @@ public abstract class TBaseActivity<DB extends ViewDataBinding, P extends TBaseP
     protected Context mContext;
     protected P mPresenter = null;
     //保存观察者和订阅者的订阅关系对象
-    public CompositeDisposable httpCompositeDisposable = null;
+    private CompositeDisposable httpCompositeDisposable = null;
     private LoagDialog mLoagDialog;
 
     @Override

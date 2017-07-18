@@ -19,6 +19,8 @@ public interface THomeBottomContract {
 
     interface Presenter extends TContract.Presenter {
         void getStart();
+
+        void initClick(TWelcomeEntity welcomeEntity, THomeBottomAdapter adapter, TFragmentController controller);
     }
 
     interface Model extends TContract.Model {

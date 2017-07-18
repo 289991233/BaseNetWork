@@ -27,6 +27,7 @@ import java.util.List;
 
 import basenetword.jack.com.network.http.rxhttp.OkHttp;
 import basenetword.jack.com.network.utils.Loger;
+import basenetword.jack.com.network.utils.ToastUtil;
 import basenetword.jack.com.network.utils.rx.RxBus;
 import basenetword.jack.com.network.utils.rx.Subscribe;
 import okhttp3.Request;
@@ -35,7 +36,6 @@ public class MainActivity extends XBaseActivity<ActivityMainBinding> {
     private List<String> mStrings = new ArrayList<>();
     private List<Fragment> mFragments = new ArrayList<>();
     private InformationclassEntity mEntity = new InformationclassEntity();
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
@@ -191,4 +191,24 @@ public class MainActivity extends XBaseActivity<ActivityMainBinding> {
         }
     }
 
+    private long exitTime = 0;
+
+
+    /**
+     * 返回键监听建议使用  onBackPressed()
+     * 不建议使用onKeyDown
+     */
+    @Override
+    public void onBackPressed() {
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            ToastUtil.getInstance().showToast("再按一次退出程序");
+            exitTime = System.currentTimeMillis();
+
+        } else {
+//            CommonUntil.copy("", context);
+            System.exit(0);
+            super.onBackPressed();
+
+        }
+    }
 }
