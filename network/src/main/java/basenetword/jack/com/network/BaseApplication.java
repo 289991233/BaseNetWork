@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.sunfusheng.glideimageview.progress.GlideApp;
 
+import basenetword.jack.com.network.okhttp.RxHttpUtils;
 import basenetword.jack.com.network.utils.ninegridviewutils.NineGridView;
 
 /**

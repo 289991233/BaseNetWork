@@ -71,7 +71,12 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
 //
 //            }
 //        });
-
+        mBinding.btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                startActivity(new Intent(mContext, ActivityWelcome.class));
+            }
+        });
         mBinding.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +129,6 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
                 Loger.e(dx + "---" + dy);
             }
         });
-
 
 
     }
