@@ -29,18 +29,20 @@ public abstract class XBaseActivity<DB extends ViewDataBinding> extends AppCompa
         this.mContext = getApplicationContext();
         this.mActivity = this;
         ImmersionBar.with(this).statusBarColor("#FF0000").init();
-        init(savedInstanceState);
+
         initView();
         initData();
+        init(savedInstanceState);
     }
 
     protected abstract int getLayoutId();
 
-    protected abstract void init(Bundle savedInstanceState);
-
     protected abstract void initView();
 
     protected abstract void initData();
+
+    protected abstract void init(Bundle savedInstanceState);
+
 
     @Override
     protected void onDestroy() {

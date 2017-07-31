@@ -6,15 +6,19 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.flyco.tablayout.listener.CustomTabEntity;
+import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.google.gson.Gson;
 import com.jack.basenetword.R;
 import com.jack.basenetword.base.XBaseActivity;
 import com.jack.basenetword.databinding.ActivityMainBinding;
 import com.jack.basenetword.entity.InformationclassEntity;
+import com.jack.basenetword.entity.TabEntity;
 import com.jack.basenetword.fragment.TestFragment;
 
 import org.json.JSONException;
@@ -35,7 +39,9 @@ import okhttp3.Request;
 public class MainActivity extends XBaseActivity<ActivityMainBinding> {
     private List<String> mStrings = new ArrayList<>();
     private List<Fragment> mFragments = new ArrayList<>();
+    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     private InformationclassEntity mEntity = new InformationclassEntity();
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
@@ -67,14 +73,47 @@ public class MainActivity extends XBaseActivity<ActivityMainBinding> {
                             bundle.putString("flags", mEntity.getList().get(i).getFlags());
                             bundle.putString("name", mEntity.getList().get(i).getCname());
                             mStrings.add(mEntity.getList().get(i).getCname());
+                            mTabEntities.add(new TabEntity(mEntity.getList().get(i).getCname()));
                             Loger.e(mEntity.getList().get(i).getCname());
                             m.setArguments(bundle);
                             mFragments.add(m);
                         }
+                        mBinding.tbCommon.setTabData(mTabEntities);
+                        mBinding.tbCommon.setOnTabSelectListener(new OnTabSelectListener() {
+                            @Override
+                            public void onTabSelect(int position) {
+                                mBinding.vp.setCurrentItem(position);
+                            }
+
+                            @Override
+                            public void onTabReselect(int position) {
+
+                            }
+                        });
                         mBinding.vp.setAdapter(new MyAdapter(getSupportFragmentManager(), mFragments, mStrings));
-                        mBinding.tab.setupWithViewPager(mBinding.vp);
-                        mBinding.vp.setOffscreenPageLimit(mFragments.size());
+//                        mBinding.tab.setupWithViewPager(mBinding.vp);
+//                        mBinding.vp.setOffscreenPageLimit(mFragments.size());
 //                        setIndicator(mBinding.tab,10,10);
+                        mBinding.vp.setCurrentItem(0);
+                        mBinding.vp.setOffscreenPageLimit(mFragments.size());
+                        mBinding.vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                            @Override
+                            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                            }
+
+                            @Override
+                            public void onPageSelected(int position) {
+                                mBinding.tbCommon.setCurrentTab(position);
+                            }
+
+                            @Override
+                            public void onPageScrollStateChanged(int state) {
+
+                            }
+                        });
+
+
                     } else {
 
                     }

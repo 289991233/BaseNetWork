@@ -135,7 +135,7 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
 
     private void initDatas() {
 
-        LoagDialog.getInstance(getActivity()).showDialog();
+//        LoagDialog.getInstance(getActivity()).showDialog();
         String url = "https://hssc.m.huisou.com/apps/news/index?type=" + type + "&flags=" + flags + "&page=" + page + "&categoryid=" + id + "&token=";
         OkHttp.GetRequset(url, 10087, new OkHttp.IHttpRequest() {
             @Override
