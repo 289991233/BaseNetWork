@@ -1,40 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
->
+    >
 
     <LinearLayout
         style="@style/MatchMatch.Vertical">
-        <Button
-            android:id="@+id/btn_img"
-            style="@style/MatchWrap"
-            android:text="图片选择示例"/>
-        <Button
-            android:id="@+id/btn_img1"
-            style="@style/MatchWrap"
-            android:text="简单图片选择示例"/>
-        <Button
-            android:id="@+id/btn_img2"
-            style="@style/MatchWrap"
-            android:text="简单图片选择示例2"/>
-        <Button
-            android:id="@+id/btn_img3"
-            style="@style/MatchWrap"
-            android:text="NICE9"/>
-        <Button
-            android:id="@+id/btn_img4"
-            style="@style/MatchWrap"
-            android:text="Vlayout"/>
-        <Button
-            android:id="@+id/btn_img5"
-            style="@style/MatchWrap"
-            android:text="请求接口"/>
-        <Button
-            android:id="@+id/btn_img6"
-            style="@style/MatchWrap"
-            android:text="底部栏"/>
-        <TextView
-            android:id="@+id/tv"
-            style="@style/MatchWrap"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                style="@style/MatchMatch.Vertical">
+
+                <Button
+                    android:id="@+id/btn_img"
+                    style="@style/MatchWrap"
+                    android:text="图片选择示例"/>
+
+                <Button
+                    android:id="@+id/btn_img1"
+                    style="@style/MatchWrap"
+                    android:text="简单图片选择示例"/>
+
+                <Button
+                    android:id="@+id/btn_img2"
+                    style="@style/MatchWrap"
+                    android:text="简单图片选择示例2"/>
+
+                <Button
+                    android:id="@+id/btn_img3"
+                    style="@style/MatchWrap"
+                    android:text="NICE9"/>
+
+                <Button
+                    android:id="@+id/btn_img4"
+                    style="@style/MatchWrap"
+                    android:text="Vlayout"/>
+
+                <Button
+                    android:id="@+id/btn_img5"
+                    style="@style/MatchWrap"
+                    android:text="请求接口"/>
+
+                <Button
+                    android:id="@+id/btn_img6"
+                    style="@style/MatchWrap"
+                    android:text="底部栏"/>
+
+                <Button
+                    android:id="@+id/btn_img7"
+                    style="@style/MatchWrap"
+                    android:text="网络请求"/>
+
+                <TextView
+                    android:id="@+id/tv"
+                    style="@style/MatchWrap"/>
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>

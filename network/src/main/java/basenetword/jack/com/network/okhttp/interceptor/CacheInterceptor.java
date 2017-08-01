@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import java.io.IOException;
 
 import basenetword.jack.com.network.BaseApplication;
+import basenetword.jack.com.network.utils.Utils;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -53,7 +54,7 @@ public class CacheInterceptor implements Interceptor {
      * @return 返回值
      */
     public static boolean isNetworkConnected() {
-        Context context = BaseApplication.getInstance();
+        Context context = Utils.getContext();
         if (context != null) {
             ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();

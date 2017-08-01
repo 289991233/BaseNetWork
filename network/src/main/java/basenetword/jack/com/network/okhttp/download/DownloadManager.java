@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import basenetword.jack.com.network.BaseApplication;
+import basenetword.jack.com.network.utils.Utils;
 import okhttp3.ResponseBody;
 
 /**
@@ -29,7 +30,7 @@ public class DownloadManager {
      */
     public File saveFile(ResponseBody response, final String destFileName, ProgressListener progressListener) throws IOException {
 
-        String destFileDir = BaseApplication.getInstance().getExternalFilesDir(null) + File.separator;
+        String destFileDir = Utils.getContext().getExternalFilesDir(null) + File.separator;
 
         long contentLength = response.contentLength();
         InputStream is = null;

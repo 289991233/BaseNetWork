@@ -6,15 +6,21 @@ import android.view.View;
 
 import basenetword.jack.com.network.R;
 import basenetword.jack.com.network.databinding.ActivityTestHomeBinding;
+import basenetword.jack.com.network.okhttp.RxHttpUtils;
+import basenetword.jack.com.network.okhttp.http.CommonObserver;
+import basenetword.jack.com.network.okhttp.interceptor.Transformer;
 import basenetword.jack.com.network.test.activity.SelcetImageActivity;
 import basenetword.jack.com.network.test.activity.SimpeImaActivity;
 import basenetword.jack.com.network.test.activity.SimpeImage2Activity;
 import basenetword.jack.com.network.test.activity.VlayoutActivity;
 import basenetword.jack.com.network.test.base.TBaseActivity;
 import basenetword.jack.com.network.test.homefragment.THomeActivity;
+import basenetword.jack.com.network.test.mvptest.HomeNewEntity;
 import basenetword.jack.com.network.test.mvptest.TestHomeContract;
 import basenetword.jack.com.network.test.mvptest.TestHomePresenter;
 import basenetword.jack.com.network.test.nice9.MainActivity;
+import basenetword.jack.com.network.utils.Loger;
+import io.reactivex.disposables.Disposable;
 
 public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding, TestHomePresenter> implements TestHomeContract.View {
 
@@ -74,6 +80,37 @@ public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding, Tes
                 startActivity(new Intent(mContext, THomeActivity.class));
             }
         });
+
+        mBinding.btnImg7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                RxHttpUtils
+//                        .getSInstance()
+//                        .baseUrl("https://hssc.m.huisou.com/")
+//                        .createSApi(TApiServer.class)
+//                        .getTestData2("1")
+//                        .compose(Transformer.<HomeNewEntity>switchSchedulers())
+//                        .subscribe(new CommonObserver<HomeNewEntity>() {
+//                            @Override
+//                            protected void getDisposable(Disposable d) {
+//                                //方法暴露出来使用者根据需求去取消订阅
+//                                //d.dispose();在onDestroy方法中调用
+//                            }
+//
+//                            @Override
+//                            protected void onError(String errorMsg) {
+//                                //错误处理
+//                            }
+//
+//                            @Override
+//                            protected void onSuccess(HomeNewEntity bookBean) {
+//                                //业务处理
+//                                mBinding.tv.setText(bookBean.getCode());
+//                            }
+//                        });
+            }
+        });
+
     }
 
     @Override

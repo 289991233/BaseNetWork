@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import java.util.UUID;
 
 import basenetword.jack.com.network.BaseApplication;
+import basenetword.jack.com.network.utils.Utils;
 
 /**
  * Created by allen on 2016/12/23.
@@ -29,8 +30,8 @@ public class AppUtils {
         PackageInfo pi;
         String versionNum;
         try {
-            PackageManager pm = BaseApplication.getInstance().getPackageManager();
-            pi = pm.getPackageInfo(BaseApplication.getInstance().getPackageName(), PackageManager.GET_CONFIGURATIONS);
+            PackageManager pm = Utils.getContext().getPackageManager();
+            pi = pm.getPackageInfo(Utils.getContext().getPackageName(), PackageManager.GET_CONFIGURATIONS);
             versionNum = pi.versionName;
         } catch (Exception e) {
             versionNum = "0";
@@ -48,7 +49,7 @@ public class AppUtils {
      */
     public static String getUUID() {
 
-        Context context = BaseApplication.getInstance();
+        Context context = Utils.getContext();
 
         String uuid = (String) SPUtils.get(context, "PHONE_UUID", "");
 

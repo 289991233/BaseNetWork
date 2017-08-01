@@ -11,6 +11,7 @@ import basenetword.jack.com.network.okhttp.http.CommonObserver;
 import basenetword.jack.com.network.okhttp.interceptor.Transformer;
 import basenetword.jack.com.network.test.TApiServer;
 import basenetword.jack.com.network.test.homefragment.TWelcomeEntity;
+import basenetword.jack.com.network.utils.Loger;
 import io.reactivex.Single;
 import io.reactivex.disposables.Disposable;
 
@@ -42,6 +43,8 @@ public class TestHomeModel extends TBaseModel implements TestHomeContract.Model 
                         requestCallBack.onError(t, errorTips);
                     }
                 });
+
+
 
 
     }

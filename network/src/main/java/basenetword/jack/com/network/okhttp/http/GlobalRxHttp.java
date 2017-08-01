@@ -14,6 +14,7 @@ import basenetword.jack.com.network.okhttp.interceptor.AddCookiesInterceptor;
 import basenetword.jack.com.network.okhttp.interceptor.CacheInterceptor;
 import basenetword.jack.com.network.okhttp.interceptor.HeaderInterceptor;
 import basenetword.jack.com.network.okhttp.interceptor.ReceivedCookiesInterceptor;
+import basenetword.jack.com.network.utils.Utils;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -104,7 +105,7 @@ public class GlobalRxHttp {
      */
     public GlobalRxHttp setCache() {
         CacheInterceptor cacheInterceptor = new CacheInterceptor();
-        Cache cache = new Cache(new File(Environment.getExternalStorageDirectory().getPath() + "/rxHttpCacheData")
+        Cache cache = new Cache(new File(Utils.getContext().getCacheDir() + "/rxHttpCacheData")
                 , 1024 * 1024 * 100);
         getGlobalOkHttpBuilder().addInterceptor(cacheInterceptor)
                 .addNetworkInterceptor(cacheInterceptor)

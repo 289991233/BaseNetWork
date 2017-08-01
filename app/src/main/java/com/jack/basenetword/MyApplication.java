@@ -17,6 +17,7 @@ import basenetword.jack.com.network.okhttp.RxHttpUtils;
 import basenetword.jack.com.network.utils.CrashHandler;
 import basenetword.jack.com.network.utils.Loger;
 import basenetword.jack.com.network.utils.Utils;
+import okhttp3.OkHttpClient;
 
 
 public class MyApplication extends MultiDexApplication {
@@ -31,6 +32,12 @@ public class MyApplication extends MultiDexApplication {
         instance = this;
         Loger.setDebug(true);
         OkHttp.init(this);
+//        HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(null, null, null);
+//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+//                //其他配置
+//                .build();
+//        OkHttpUtils.initClient(okHttpClient);
         /**
          * 全局请求的统一配置
          */
@@ -64,8 +71,8 @@ public class MyApplication extends MultiDexApplication {
         String processName = getProcessName();  //注意区分进程初始化不同的东西【避免其他无关进程不必要的初始化】
         if (!TextUtils.isEmpty(processName) && processName.equals(this.getPackageName())) { //main Process 当前app进程
             if (!BuildConfig.DEBUG) {
-                CrashHandler crashHandler = CrashHandler.getInstance();
-                crashHandler.init(getApplicationContext(), MainActivity.class);
+//                CrashHandler crashHandler = CrashHandler.getInstance();
+//                crashHandler.init(getApplicationContext(), MainActivity.class);
             }
         } else {
             //其他进程 如推送等...

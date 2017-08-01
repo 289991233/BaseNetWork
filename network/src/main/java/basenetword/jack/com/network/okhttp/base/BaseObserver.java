@@ -4,13 +4,16 @@ import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.util.Util;
 
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
+import basenetword.jack.com.network.BaseApplication;
 import basenetword.jack.com.network.okhttp.exception.ApiException;
+import basenetword.jack.com.network.utils.Utils;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import okhttp3.ResponseBody;
@@ -77,7 +80,7 @@ public abstract class BaseObserver<T extends BaseResponse> implements Observer<T
      */
     protected void showToast(String msg) {
         if (mToast == null) {
-            mToast = Toast.makeText(BaseRxHttpApplication.getContext(), msg, Toast.LENGTH_SHORT);
+            mToast = Toast.makeText(Utils.getContext(), msg, Toast.LENGTH_SHORT);
         } else {
             mToast.setText(msg);
         }

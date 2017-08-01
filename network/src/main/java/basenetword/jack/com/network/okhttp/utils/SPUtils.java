@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import basenetword.jack.com.network.BaseApplication;
+import basenetword.jack.com.network.utils.Utils;
 
 /**
  * Created by allen on 2017/5/10.
@@ -153,7 +154,7 @@ public class SPUtils {
      * @return
      */
     private static SharedPreferences obtainPref() {
-        Context context = BaseApplication.getInstance();
+        Context context = Utils.getContext();
         SharedPreferences pref = context.getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         return pref;

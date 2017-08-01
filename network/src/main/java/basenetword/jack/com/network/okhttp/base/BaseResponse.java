@@ -1,5 +1,7 @@
 package basenetword.jack.com.network.okhttp.base;
 
+import java.util.List;
+
 /**
  * Created by allen on 2017/6/23.
  * <p>
@@ -11,7 +13,7 @@ public class BaseResponse {
     /**
      * 错误码
      */
-    private int code;
+    private String code;
 
     public String getHint() {
         return hint;
@@ -21,19 +23,20 @@ public class BaseResponse {
         this.hint = hint;
     }
 
+
+
     /**
      * 错误描述
      */
     private String hint;
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
-
 
 
     @Override

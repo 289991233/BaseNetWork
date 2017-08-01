@@ -10,6 +10,7 @@ import java.net.UnknownHostException;
 
 import basenetword.jack.com.network.BaseApplication;
 import basenetword.jack.com.network.okhttp.exception.ApiException;
+import basenetword.jack.com.network.utils.Utils;
 import io.reactivex.Observer;
 import okhttp3.ResponseBody;
 
@@ -55,7 +56,7 @@ public abstract class BaseDownloadObserver implements Observer<ResponseBody> {
      */
     protected void showToast(String msg) {
         if (mToast == null) {
-            mToast = Toast.makeText(BaseApplication.getInstance(), msg, Toast.LENGTH_SHORT);
+            mToast = Toast.makeText(Utils.getContext(), msg, Toast.LENGTH_SHORT);
         } else {
             mToast.setText(msg);
         }

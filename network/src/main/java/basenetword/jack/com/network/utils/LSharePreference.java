@@ -10,7 +10,7 @@ import android.content.SharedPreferences.Editor;
  * 封装sharePreference
  */
 public class LSharePreference {
-    //    private static String SP_NAME = BaseApplication.getInstance().getPackageName();
+    //    private static String SP_NAME = Utils.getContext().getPackageName();
     private static String SP_NAME = "ssssss";
 
 
