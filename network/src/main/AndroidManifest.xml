@@ -27,6 +27,8 @@
         </activity>
         <activity android:name=".test.activity.WebActivity">
         </activity>
+        <activity android:name=".test.activity.Vlayout2Activity">
+        </activity>
     </application>
 
 </manifest>

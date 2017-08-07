@@ -12,6 +12,7 @@ import basenetword.jack.com.network.okhttp.interceptor.Transformer;
 import basenetword.jack.com.network.test.activity.SelcetImageActivity;
 import basenetword.jack.com.network.test.activity.SimpeImaActivity;
 import basenetword.jack.com.network.test.activity.SimpeImage2Activity;
+import basenetword.jack.com.network.test.activity.Vlayout2Activity;
 import basenetword.jack.com.network.test.activity.VlayoutActivity;
 import basenetword.jack.com.network.test.base.TBaseActivity;
 import basenetword.jack.com.network.test.homefragment.THomeActivity;
@@ -63,7 +64,7 @@ public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding, Tes
         mBinding.btnImg4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(mContext, VlayoutActivity.class));
+                startActivity(new Intent(mContext, Vlayout2Activity.class));
             }
         });
         mBinding.btnImg5.setOnClickListener(new View.OnClickListener() {
