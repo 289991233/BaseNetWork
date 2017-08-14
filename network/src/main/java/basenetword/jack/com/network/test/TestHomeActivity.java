@@ -85,30 +85,30 @@ public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding, Tes
         mBinding.btnImg7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                RxHttpUtils
-//                        .getSInstance()
-//                        .baseUrl("https://hssc.m.huisou.com/")
-//                        .createSApi(TApiServer.class)
-//                        .getTestData2("1")
-//                        .compose(Transformer.<HomeNewEntity>switchSchedulers())
-//                        .subscribe(new CommonObserver<HomeNewEntity>() {
-//                            @Override
-//                            protected void getDisposable(Disposable d) {
-//                                //方法暴露出来使用者根据需求去取消订阅
-//                                //d.dispose();在onDestroy方法中调用
-//                            }
-//
-//                            @Override
-//                            protected void onError(String errorMsg) {
-//                                //错误处理
-//                            }
-//
-//                            @Override
-//                            protected void onSuccess(HomeNewEntity bookBean) {
-//                                //业务处理
-//                                mBinding.tv.setText(bookBean.getCode());
-//                            }
-//                        });
+                RxHttpUtils
+                        .getSInstance()
+                        .baseUrl("https://hssc.m.huisou.com/")
+                        .createSApi(TApiServer.class)
+                        .getTestData2("1")
+                        .compose(Transformer.<HomeNewEntity>switchSchedulers())
+                        .subscribe(new CommonObserver<HomeNewEntity>() {
+                            @Override
+                            protected void getDisposable(Disposable d) {
+                                //方法暴露出来使用者根据需求去取消订阅
+                                d.dispose();//在onDestroy方法中调用
+                            }
+
+                            @Override
+                            protected void onError(String errorMsg) {
+                                //错误处理
+                            }
+
+                            @Override
+                            protected void onSuccess(HomeNewEntity bookBean) {
+                                //业务处理
+                                mBinding.tv.setText(bookBean.getCode());
+                            }
+                        });
             }
         });
 

@@ -68,6 +68,7 @@ public final class AppUtils {
         }
         return verCode;
     }
+
     /**
      * 防止双击出现重复界面
      *
@@ -84,6 +85,7 @@ public final class AppUtils {
         lastClick = System.currentTimeMillis();
         return isClick;
     }
+
     /**
      * 得到软件显示版本信息
      *
@@ -572,6 +574,7 @@ public final class AppUtils {
     public static void StartActivity(Context context, Class<?> cls) {
         Intent intent = new Intent(context, cls);
         context.startActivity(intent);
+        Loger.e("跳转类-----" + cls);
     }
 
 
@@ -579,5 +582,6 @@ public final class AppUtils {
         Intent intent = new Intent(context, cls);
         intent.putExtras(bundle);
         context.startActivity(intent);
+        Loger.e("跳转类-----" + cls);
     }
 }

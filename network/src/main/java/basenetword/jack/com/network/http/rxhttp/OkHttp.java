@@ -63,7 +63,7 @@ public class OkHttp {
          * 在这里直接设置连接超时.读取超时，写入超时
          */
         File file = new File(Utils.getContext().getApplicationContext().getCacheDir(), "rxCache");
-        //缓存大小10M
+        //缓存大小100M
         int cacheSize = 100 * 1024 * 1024;
         Cache cache = new Cache(file, cacheSize);
         OkHttpClient.Builder builder = mClient.newBuilder();

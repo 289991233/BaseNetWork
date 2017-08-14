@@ -12,7 +12,7 @@ import io.reactivex.disposables.Disposable;
  * 修订历史：
  * 修 改 人：
  */
-public abstract class TBaseModel implements BaseModel {
+public abstract class TBaseModel  implements BaseModel {
     //保存观察者和订阅者的订阅关系对象
     public CompositeDisposable compositeDisposable;
 

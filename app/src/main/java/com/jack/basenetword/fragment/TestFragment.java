@@ -10,7 +10,6 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.jack.basenetword.R;
@@ -30,15 +29,12 @@ import java.util.List;
 import basenetword.jack.com.network.http.rxhttp.BaseObserver;
 import basenetword.jack.com.network.http.rxhttp.OkHttp;
 import basenetword.jack.com.network.okhttp.RxHttpUtils;
-import basenetword.jack.com.network.okhttp.http.CommonObserver;
 import basenetword.jack.com.network.okhttp.interceptor.Transformer;
 import basenetword.jack.com.network.test.TApiServer;
 import basenetword.jack.com.network.test.TestHomeActivity;
-import basenetword.jack.com.network.test.mvptest.HomeNewEntity;
 import basenetword.jack.com.network.utils.Loger;
 import basenetword.jack.com.network.utils.ToastUtil;
 import basenetword.jack.com.network.utils.dialog.LoagDialog;
-import io.reactivex.disposables.Disposable;
 import okhttp3.Request;
 
 /**
@@ -209,7 +205,7 @@ public class TestFragment extends XBaseFragment<FragmentTestBinding> {
     }
 
     @Override
-    protected void init(Bundle savedInstanceState) {
+    protected void init(Bundle savedInstanceState)  {
 //        initView();
         mBinding.rv.setLayoutManager(new LinearLayoutManager(mContext));
         isViewCreated = true; // 控件初始化完成

@@ -27,7 +27,8 @@ public class TestHomeModel extends TBaseModel implements TestHomeContract.Model 
 
     @Override
     public void getHome(String params, final int type, final RequestCallBack requestCallBack) {
-        OkRetrofit
+
+        Disposable disposable = OkRetrofit
                 .getInstance()
                 .getApi()
                 .getTestData1(params)
@@ -44,7 +45,7 @@ public class TestHomeModel extends TBaseModel implements TestHomeContract.Model 
                     }
                 });
 
-
+        addDisposable(disposable);
 
 
     }

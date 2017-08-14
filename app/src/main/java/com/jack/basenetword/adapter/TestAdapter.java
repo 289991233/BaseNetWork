@@ -23,7 +23,7 @@ import basenetword.jack.com.network.utils.recycleviewutils.RecyclerViewHolder;
 public class TestAdapter extends BaseRecyclerAdapter<NewEntity.ListBean.NewslistBean> {
 
     private Context mContext;
-    List<NewEntity.ListBean.NewslistBean> list;
+    private List<NewEntity.ListBean.NewslistBean> list;
 
     //    public TestAdapter(Context context, List<NewEntity.ListBean.NewslistBean> data) {
 //        super(context, R.layout.rv_new_item, data);

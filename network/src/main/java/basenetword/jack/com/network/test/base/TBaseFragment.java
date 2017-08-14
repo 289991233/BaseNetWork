@@ -45,15 +45,15 @@ public abstract class TBaseFragment<DB extends ViewDataBinding, P extends TBaseP
 
     // 该方法只有在ViewPager与Fragment结合使用的时候才会执行
     // 该方法在onCreateView之前调用
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && isViewCreated && !isLoadCompleted) {
-            // 只有在对用户可见、控件初始化完成并且未曾加载过数据的情况下才进行懒加载
-            initData();
-            isLoadCompleted = true;
-        }
-    }
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//        if (isVisibleToUser && isViewCreated && !isLoadCompleted) {
+//            // 只有在对用户可见、控件初始化完成并且未曾加载过数据的情况下才进行懒加载
+//            initData();
+//            isLoadCompleted = true;
+//        }
+//    }
 
     @Override
     public void onAttach(Context context) {

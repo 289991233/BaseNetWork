@@ -5,7 +5,9 @@ package basenetword.jack.com.network.http;
 
 import android.util.Log;
 
-public class TBasePresenter<T extends TContract.View, E extends TContract.Model> {
+import basenetword.jack.com.network.http.models.TBaseModel;
+
+public class TBasePresenter<T extends TContract.View, E extends TContract.Model> extends TBaseModel {
     protected T view;
     protected E model;
 
@@ -26,7 +28,7 @@ public class TBasePresenter<T extends TContract.View, E extends TContract.Model>
         Log.e("xx", view + "----" + model + "----销毁了");
         view = null;
         model = null;
-
+        dispose();
     }
 
 
