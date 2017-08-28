@@ -13,14 +13,12 @@ import basenetword.jack.com.network.test.activity.SelcetImageActivity;
 import basenetword.jack.com.network.test.activity.SimpeImaActivity;
 import basenetword.jack.com.network.test.activity.SimpeImage2Activity;
 import basenetword.jack.com.network.test.activity.Vlayout2Activity;
-import basenetword.jack.com.network.test.activity.VlayoutActivity;
 import basenetword.jack.com.network.test.base.TBaseActivity;
 import basenetword.jack.com.network.test.homefragment.THomeActivity;
 import basenetword.jack.com.network.test.mvptest.HomeNewEntity;
 import basenetword.jack.com.network.test.mvptest.TestHomeContract;
 import basenetword.jack.com.network.test.mvptest.TestHomePresenter;
 import basenetword.jack.com.network.test.nice9.MainActivity;
-import basenetword.jack.com.network.utils.Loger;
 import io.reactivex.disposables.Disposable;
 
 public class TestHomeActivity extends TBaseActivity<ActivityTestHomeBinding, TestHomePresenter> implements TestHomeContract.View {
